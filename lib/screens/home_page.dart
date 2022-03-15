@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 200,
+              height: 199,
               child: ListView.builder(
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
