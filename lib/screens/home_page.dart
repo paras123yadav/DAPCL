@@ -13,175 +13,202 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
               height: 200,
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: 3,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/veg.jpg'),
+                      )
+                  ),
                   height: 200,
                   width: 300,
                   margin: const EdgeInsets.all(10),
-                  child: Center(
+                  child: const Center(
                     child: Text(
-                      "Card $index",
-                      style: const TextStyle(color: Colors.white),
+                      "",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  color: Colors.green[700],
                 ),
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: InkWell(
-                      child: Container(
-                        margin: const EdgeInsets.all(7.5),
-                        height: 130,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: const AssetImage(
-                                  'assets/rec4.jpg'
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text("Product Category",
+                style: GoogleFonts.openSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: InkWell(
+                        child: Container(
+                            margin: const EdgeInsets.all(7.5),
+                            height: 170,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey.withOpacity(0.15)
+                            ),                        child: Column(
+                          children: [
+                            Image.asset("assets/fresh_veg.png",
+                              height: 100,
+                            ),
+                            Center(
+                                child: Text("Fresh Veg's",
+                                  style: GoogleFonts.nunito(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                            ),
+                            const SizedBox(height: 10,),
+                            FittedBox(
+                              child: Text("Available all year round"
+                                ,style: GoogleFonts.nunito(),
                               ),
-                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
                             )
+                          ],
+                        )
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(7.5),
-                          child: Center(
-                            child: Text("Lectures",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'RobotoCondensed',
-                                  color: Colors.black87
-                              ),
+                        onTap: (){
+                        },
+                      )
+                  ),
+                  Expanded(
+                      child: InkWell(
+                        child: Container(
+                            margin: const EdgeInsets.all(7.5),
+                            height: 170,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey.withOpacity(0.15)
+                            ),                        child: Column(
+                          children: [
+                            Image.asset("assets/sessional_veg.jpg",
+                              height: 100,
                             ),
-                          ),
-                        ),
-                      ),
-                      onTap: (){
-                      },
-                    )
-                ),
-                Expanded(
-                    child: InkWell(
-                      child: Container(
-                        margin: const EdgeInsets.all(7.5),
-                        height: 130,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: const AssetImage('assets/rec2.jpg'),
-                            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(7.5),
-                          child: Center(
-                            child: Text("Classroom",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'RobotoCondensed',
-                                  color: Colors.black
-                              ),
+                            Center(
+                                child: Text("Sessional Veg's",
+                                  style: GoogleFonts.nunito(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
                             ),
-                          ),
+                            const SizedBox(height: 10,),
+                            FittedBox(
+                              child: Text("Freshly Hand Picked"
+                                ,style: GoogleFonts.nunito(),
+                              ),
+                            )
+                          ],
+                        )
                         ),
-                      ),
-                      onTap: (){
-                      },
-                    )
-                ),
-              ],
+                        onTap: (){
+                        },
+                      )
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                    child: InkWell(
-                      child: Container(
-                        margin: const EdgeInsets.all(7.5),
-                        height: 130,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/rec1.jpg'),
-                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: InkWell(
+                        child: Container(
+                            margin: const EdgeInsets.all(7.5),
+                            height: 170,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey.withOpacity(0.15)
+                            ),                        child: Column(
+                          children: [
+                            Image.asset("assets/hydroponics.jpeg",
+                              height: 100,
+                            ),
+                            Center(
+                                child: Text("Hydroponics",
+                                  style: GoogleFonts.nunito(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                            ),
+                            const SizedBox(height: 10,),
+                            Text("Exotic Fruits and Vegetables"
+                              ,style: GoogleFonts.nunito(),
                             )
+                          ],
+                        )
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(7.5),
-                          child: Center(
-                            child: Text("Club Activities",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'RobotoCondensed',
-                                  color: Colors.black
+                        onTap: (){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'We are working on this page.',
+                                style: GoogleFonts.nunito(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
+                              backgroundColor: Colors.pinkAccent,
                             ),
-                          ),
-                        ),
-                      ),
-                      onTap: (){
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'We are working on Club Activities page.',
-                              style: GoogleFonts.nunito(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            backgroundColor: Colors.pinkAccent,
-                          ),
-                        );
+                          );
 
-                      },
-                    )
-                ),
-                Expanded(
-                    child: InkWell(
-                      child: Container(
-                        margin: const EdgeInsets.all(7.5),
-                        height: 130,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: const AssetImage('assets/rec3.jpg'),
-                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                            )
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(7.5),
-                          child: Center(
-                            child: Text("Lost and Found",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'RobotoCondensed',
-                                  color: Colors.black
-                              ),
+                        },
+                      )
+                  ),
+                  Expanded(
+                      child: InkWell(
+                        child: Container(
+                            margin: const EdgeInsets.all(7.5),
+                            height: 170,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey.withOpacity(0.15)
+                            ),                        child: Column(
+                          children: [
+                            Image.asset("assets/fresh_fruits.jpg",
+                              height: 100,
                             ),
-                          ),
+                            Center(
+                                child: Text("Fresh Fruits",
+                                  style: GoogleFonts.nunito(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                            ),
+                            const SizedBox(height: 10,),
+                            Text("Delicious"
+                              ,style: GoogleFonts.nunito(),
+                            )
+                          ],
+                        )
                         ),
-                      ),
-                      onTap: (){
-                      },
-                    )
-                ),
-              ],
+                        onTap: (){
+                        },
+                      )
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             Flexible(
