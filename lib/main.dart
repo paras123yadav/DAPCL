@@ -42,7 +42,10 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
+        backgroundColor: Colors.green[700],
+      ),
       body: IndexedStack(
         index: _selectedPage,
         children: pageList,
@@ -55,20 +58,20 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.add_shopping_cart),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.track_changes),
+            label: 'Track',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedPage,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.green,
         onTap: _onItemTapped,
       ),
     );
