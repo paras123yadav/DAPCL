@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngo/screens/home_page.dart';
+import 'package:ngo/screens/login.dart';
 import 'package:ngo/screens/profile_page.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const BottomNavigationBarController(),
+      home: Login(),
     );
   }
 }
