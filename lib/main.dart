@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngo/screens/home_page.dart';
-import 'package:ngo/screens/login.dart';
+import 'package:ngo/screens/login/login.dart';
 import 'package:ngo/screens/profile_page.dart';
 
 void main() {
@@ -44,8 +44,12 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
-        backgroundColor: Colors.green[700],
+        automaticallyImplyLeading: false,
+       leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
+        actions: [
+          customwallet(),
+        ],
+        backgroundColor: Colors.white,
       ),
       body: IndexedStack(
         index: _selectedPage,
@@ -82,5 +86,34 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
       _selectedPage = index;
     });
   }
-
+Widget customwallet(){
+    return InkWell(
+      onTap: (){},
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.circular(5),
+          side: const BorderSide(
+            width: 1,
+            color: Colors.grey
+          )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 4.0,right: 4),
+          child: Row(
+            children: [
+              Icon(Icons.account_balance_wallet,color: Colors.black38),
+              SizedBox(width: 10,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("My Wallet"),
+                  Text("Rs 00.00"),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+}
 }
