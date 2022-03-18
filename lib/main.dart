@@ -88,7 +88,9 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
   }
 Widget customwallet(){
     return InkWell(
-      onTap: (){},
+      onTap: (){
+
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusDirectional.circular(5),
@@ -101,11 +103,11 @@ Widget customwallet(){
           padding: const EdgeInsets.only(left: 4.0,right: 4),
           child: Row(
             children: [
-              Icon(Icons.account_balance_wallet,color: Colors.black38),
-              SizedBox(width: 10,),
+              const Icon(Icons.account_balance_wallet,color: Colors.black38),
+              const SizedBox(width: 10,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text("My Wallet"),
                   Text("Rs 00.00"),
                 ],
