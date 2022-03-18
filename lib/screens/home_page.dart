@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'dummy data/dummydata.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -84,6 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                         ),
                         onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DummyData()),
+                          );
                         },
                       )
                   ),
