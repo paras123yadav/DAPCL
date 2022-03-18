@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                             ),
                             Center(
-                                child: Text("Sessional Veg's",
+                                child: Text("Seasonal Veg's",
                                   style: GoogleFonts.nunito(
                                     fontWeight: FontWeight.bold,
                                   ),

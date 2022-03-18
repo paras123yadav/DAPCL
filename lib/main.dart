@@ -47,7 +47,7 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
         automaticallyImplyLeading: false,
        leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
         actions: [
-          customwallet(),
+          customWallet(),
         ],
         backgroundColor: Colors.white,
       ),
@@ -86,7 +86,7 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
       _selectedPage = index;
     });
   }
-Widget customwallet(){
+Widget customWallet(){
     return InkWell(
       onTap: (){
 

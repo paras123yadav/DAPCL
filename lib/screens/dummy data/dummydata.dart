@@ -53,12 +53,12 @@ class _DummyDataState extends State<DummyData> {
                   ),
                       child: InkWell(
                           onTap: (){
-                            if(data!=0)
-                            setState(() {
+                            if(data!=0) {
+                              setState(() {
                               data--;
                             });
+                            }
                           },
-
                           child: Icon(Icons.remove))
                   ),
                   SizedBox(width: 7),
