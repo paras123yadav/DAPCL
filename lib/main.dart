@@ -43,14 +43,6 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-       leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
-        actions: [
-          customWallet(),
-        ],
-        backgroundColor: Colors.white,
-      ),
       body: IndexedStack(
         index: _selectedPage,
         children: pageList,
@@ -86,36 +78,5 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
       _selectedPage = index;
     });
   }
-Widget customWallet(){
-    return InkWell(
-      onTap: (){
 
-      },
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(5),
-          side: const BorderSide(
-            width: 1,
-            color: Colors.grey
-          )
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 4.0,right: 4),
-          child: Row(
-            children: [
-              const Icon(Icons.account_balance_wallet,color: Colors.black38),
-              const SizedBox(width: 10,),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("My Wallet"),
-                  Text("Rs 00.00"),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-}
 }
