@@ -1,4 +1,4 @@
-import 'dart:io';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,10 +70,41 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Dor Alex", false),
-              buildTextField("E-mail", "alexd@gmail.com", false),
-              buildTextField("Password", "********", true),
-              buildTextField("Location", "TLV, Israel", false),
+               Row(
+                  children: [
+                    buildTextField("First Name", "Dor", false,0.4),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.1,
+                    ),
+                    buildTextField("Last Name", "Alex", false,.4),
+                  ],
+                ),
+              buildTextField("E-mail", "alexd@gmail.com", false,0.9),
+              buildTextField("Password", "********", true,0.9),
+              Row(
+                children: [
+                  buildTextField("Mobile", "1234567890", false,0.4),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width*0.1,
+                  ),
+                  buildTextField("Pincode", "TLV, Israel", false,0.4),
+                ],
+              ),
+              buildTextField("Address", "TLV, Israel", false,0.9),
+              SizedBox(
+                width: MediaQuery.of(context).size.width*.9,
+                child: Row(
+                  children: [
+                    buildTextField("City", "TLV, Israel", false,0.4),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.1,
+                    ),
+                    buildTextField("State", "TLV, Israel", false,0.4),
+                  ],
+                ),
+              ),
+
+
               SizedBox(
                 height: 35,
               ),
@@ -116,34 +147,37 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+      String labelText, String placeholder, bool isPasswordTextField,double size) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: Colors.grey,
-              ),
-            )
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width*size,
+        child: TextField(
+          obscureText: isPasswordTextField ? showPassword : false,
+          decoration: InputDecoration(
+              suffixIcon: isPasswordTextField
+                  ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    showPassword = !showPassword;
+                  });
+                },
+                icon: Icon(
+                  Icons.remove_red_eye,
+                  color: Colors.grey,
+                ),
+              )
+                  : null,
+              contentPadding: EdgeInsets.only(bottom: 3),
+              labelText: labelText,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              hintText: placeholder,
+              hintStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              )),
+        ),
       ),
     );
   }
