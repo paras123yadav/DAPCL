@@ -8,7 +8,7 @@ class DummyData extends StatefulWidget {
 
 class _DummyDataState extends State<DummyData> {
   int data=0;
-
+  int wid=0;
   List<String> images=["fresh_fruits.jpg","fresh_veg.png","sessional_veg.jpg","veg.jpg"];
   List<String> vegnames=["Amla","Cabbage","Brocolli","Bathua"];
   List<String> vegprice=["250g @ 22.5","1 Kg @ 40.0","500g @ 50.0","500g @ 28.0"];
@@ -23,13 +23,14 @@ class _DummyDataState extends State<DummyData> {
       body: SingleChildScrollView(
         child: ListView.builder(
           itemCount: 4,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return dummydata(images[index],vegnames[index],vegprice[index]);
           }
         ),
       ),
+      floatingActionButton: wid==0?Text(""):customCartButton(),
     );
   }
   Widget dummydata(String image,String veg,String price){
@@ -56,6 +57,7 @@ class _DummyDataState extends State<DummyData> {
                             if(data!=0)
                             setState(() {
                               data--;
+                              wid--;
                             });
                           },
 
@@ -72,6 +74,7 @@ class _DummyDataState extends State<DummyData> {
                           onTap: (){
                             setState(() {
                               data++;
+                              wid++;
                             });
                           },
                           child: Icon(Icons.add))
@@ -83,6 +86,43 @@ class _DummyDataState extends State<DummyData> {
         ],
       ),
       ]
+    );
+  }
+  Widget customCartButton(){
+    return InkWell(
+      onTap: (){
+
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 28.0,right: 10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.lightGreen[800]
+            ),
+            child: Row(
+              children: [
+                SizedBox(width: 14,),
+                const Icon(Icons.shopping_bag,size: 36,color: Colors.white),
+                const SizedBox(width: 10,),
+                Wrap(
+                  direction: Axis.vertical,
+                  children: const [
+                    Text("1 items",style: TextStyle(color: Colors.white)),
+                    Text("Rs 20",style: TextStyle(fontSize: 22,color: Colors.white)),
+                    ],
+                ),
+                SizedBox(width: 100,),
+                Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
+                Icon(Icons.arrow_forward_ios_sharp,color: Colors.white)
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
