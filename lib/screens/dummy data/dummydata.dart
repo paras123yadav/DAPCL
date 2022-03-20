@@ -18,7 +18,7 @@ class _DummyDataState extends State<DummyData> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent[700],
-        title: Text("Fresh Veg's Products"),
+        title: const Text("Fresh Veg's Products"),
       ),
       body: SingleChildScrollView(
         child: ListView.builder(
@@ -30,13 +30,13 @@ class _DummyDataState extends State<DummyData> {
           }
         ),
       ),
-      floatingActionButton: wid==0?Text(""):customCartButton(),
+      floatingActionButton: wid==0?const Text(""):customCartButton(),
     );
   }
   Widget dummydata(String image,String veg,String price){
     return Column(
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
         children: [
           Card(child: Image.asset("assets/"+image,height: 90,width: 90,)),
@@ -45,7 +45,7 @@ class _DummyDataState extends State<DummyData> {
             children: [
               Text(veg),
               Text(price),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Container(
@@ -54,18 +54,19 @@ class _DummyDataState extends State<DummyData> {
                   ),
                       child: InkWell(
                           onTap: (){
-                            if(data!=0)
-                            setState(() {
+                            if(data!=0) {
+                              setState(() {
                               data--;
                               wid--;
                             });
+                            }
                           },
 
-                          child: Icon(Icons.remove))
+                          child: const Icon(Icons.remove))
                   ),
-                  SizedBox(width: 7),
+                  const SizedBox(width: 7),
                   Text(data.toString()),
-                  SizedBox(width: 7),
+                  const SizedBox(width: 7),
                   Container(
                       decoration: BoxDecoration(
                           border: Border.all(width: 0.5)
@@ -77,7 +78,8 @@ class _DummyDataState extends State<DummyData> {
                               wid++;
                             });
                           },
-                          child: Icon(Icons.add))
+                          child: const Icon(Icons.add)
+                      )
                   ),
                 ],
               )
@@ -105,7 +107,7 @@ class _DummyDataState extends State<DummyData> {
             ),
             child: Row(
               children: [
-                SizedBox(width: 14,),
+                const SizedBox(width: 14),
                 const Icon(Icons.shopping_bag,size: 36,color: Colors.white),
                 const SizedBox(width: 10,),
                 Wrap(
@@ -115,14 +117,14 @@ class _DummyDataState extends State<DummyData> {
                     Text("Rs 20",style: TextStyle(fontSize: 22,color: Colors.white)),
                     ],
                 ),
-                SizedBox(width: 100,),
-                Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
-                Icon(Icons.arrow_forward_ios_sharp,color: Colors.white)
+                SizedBox(width: MediaQuery.of(context).size.width*0.24,),
+                const Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
+                const Icon(Icons.arrow_forward_ios_sharp,color: Colors.white),
               ],
             ),
           ),
+          ),
         ),
-      ),
     );
   }
 }
