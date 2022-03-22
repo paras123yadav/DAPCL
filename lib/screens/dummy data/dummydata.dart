@@ -118,8 +118,12 @@ class _DummyDataState extends State<DummyData> {
                     ],
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width*0.24,),
-                const Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
-                const Icon(Icons.arrow_forward_ios_sharp,color: Colors.white),
+                FittedBox(
+                  child: Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white))
+                          ),
+                FittedBox(
+                  child: Icon(Icons.arrow_forward_ios_sharp,color: Colors.white)
+                  )        ,
               ],
             ),
           ),
