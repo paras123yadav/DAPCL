@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ngo/CustomWidget/background.dart';
 import 'package:ngo/main.dart';
 import 'login.dart';
 
@@ -11,22 +12,22 @@ class Signup extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_sharp,
-            size: 25,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   brightness: Brightness.light,
+      //   backgroundColor: Colors.white,
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //     icon: const Icon(
+      //       Icons.arrow_back_sharp,
+      //       size: 25,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      // ),
+      body: Background(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
