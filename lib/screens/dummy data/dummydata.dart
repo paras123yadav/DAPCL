@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 class DummyData extends StatefulWidget {
   const DummyData({Key? key}) : super(key: key);
 
@@ -101,7 +102,7 @@ class _DummyDataState extends State<DummyData> {
           borderRadius: BorderRadius.circular(10),
           child: Container(
             height: 60,
-            width: double.infinity,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.lightGreen[800]
             ),
@@ -120,6 +121,7 @@ class _DummyDataState extends State<DummyData> {
                 SizedBox(width: MediaQuery.of(context).size.width*0.24,),
                 const Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
                 const Icon(Icons.arrow_forward_ios_sharp,color: Colors.white),
+                const SizedBox(width: 10,)
               ],
             ),
           ),
