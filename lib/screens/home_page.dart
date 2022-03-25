@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                             ),
                             Center(
-                                child: Text("Sessional Veg's",
+                                child: Text("Seasonal Veg's",
                                   style: GoogleFonts.nunito(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -217,16 +217,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            Flexible(
-              child: ListView.builder(
-                itemCount: 15,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text("List $index"),
-                ),
-              ),
-            ),
+            // Flexible(
+            //   child: ListView.builder(
+            //     itemCount: 15,
+            //     physics: NeverScrollableScrollPhysics(),
+            //     shrinkWrap: true,
+            //     itemBuilder: (context, index) => ListTile(
+            //       title: Text("List $index"),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
