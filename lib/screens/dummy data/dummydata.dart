@@ -23,12 +23,13 @@ class _DummyDataState extends State<DummyData> {
       ),
       body: SingleChildScrollView(
         child: ListView.builder(
-          itemCount: 4,
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return dummydata(images[index],vegnames[index],vegprice[index]);
-          }
+            itemCount: 9,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              index=index%4;
+              return dummydata(images[index],vegnames[index],vegprice[index]);
+            }
         ),
       ),
       floatingActionButton: wid==0?const Text(""):customCartButton(),
@@ -36,59 +37,63 @@ class _DummyDataState extends State<DummyData> {
   }
   Widget dummydata(String image,String veg,String price){
     return Column(
-      children: [
-        const SizedBox(height: 20),
-        Row(
         children: [
-          Card(child: Image.asset("assets/"+image,height: 90,width: 90,)),
-          Wrap(
-            direction: Axis.vertical,
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(veg),
-              Text(price),
-              const SizedBox(height: 10),
-              Row(
+              Card(child: Image.asset("assets/"+image,height: 90,width: 90,)),
+              SizedBox(width: MediaQuery.of(context).size.width*0.04,),
+              Wrap(
+                direction: Axis.vertical,
                 children: [
-                  Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 0.5)
-                  ),
-                      child: InkWell(
-                          onTap: (){
-                            if(data!=0) {
-                              setState(() {
-                              data--;
-                              wid--;
-                            });
-                            }
-                          },
+                  Text(veg,style: TextStyle(fontSize: 16)),
+                  Text(price,style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 0.5)
+                          ),
+                          child: InkWell(
+                              onTap: (){
+                                if(data!=0) {
+                                  setState(() {
+                                    data--;
+                                    wid--;
+                                  });
+                                }
+                              },
 
-                          child: const Icon(Icons.remove))
-                  ),
-                  const SizedBox(width: 7),
-                  Text(data.toString()),
-                  const SizedBox(width: 7),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 0.5)
+                              child: const Icon(Icons.remove))
                       ),
-                      child: InkWell(
-                          onTap: (){
-                            setState(() {
-                              data++;
-                              wid++;
-                            });
-                          },
-                          child: const Icon(Icons.add)
-                      )
-                  ),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                      Text(data.toString(),style: TextStyle(fontSize: 16)),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                      Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 0.5)
+                          ),
+                          child: InkWell(
+                              onTap: (){
+                                setState(() {
+                                  data++;
+                                  wid++;
+                                });
+                              },
+                              child: const Icon(Icons.add)
+                          )
+                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.34),
+                      Text("Rs 0.0",style: TextStyle(fontSize: 16))
+                    ],
+                  )
                 ],
               )
             ],
-          )
-        ],
-      ),
-      ]
+          ),
+        ]
     );
   }
   Widget customCartButton(){
@@ -116,7 +121,7 @@ class _DummyDataState extends State<DummyData> {
                   children: const [
                     Text("1 items",style: TextStyle(color: Colors.white)),
                     Text("Rs 20",style: TextStyle(fontSize: 22,color: Colors.white)),
-                    ],
+                  ],
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width*0.24,),
                 const Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
@@ -125,8 +130,8 @@ class _DummyDataState extends State<DummyData> {
               ],
             ),
           ),
-          ),
         ),
+      ),
     );
   }
 }
