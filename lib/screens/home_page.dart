@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+// ignore_for_file: prefer_const_constructors
 import 'dummy data/dummydata.dart';
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final String phone,password;
+  const HomeScreen({Key? key,required this.phone,required this.password}) : super(key: key);
+
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -18,22 +20,38 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width*0.02,
+                  right: MediaQuery.of(context).size.width*0.02,
+                  top:MediaQuery.of(context).size.width*0.01
+              ),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    labelText: "Search"
+                ),
+              ),
+            ),
             SizedBox(
-              height: 200,
+              height: MediaQuery.of(context).size.height*0.2,
               child: ListView.builder(
-                itemCount: 3,
+                itemCount: 5,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Container(
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
+                  decoration:  BoxDecoration(
+                      image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage('assets/veg.jpg'),
-                      )
+                      ),
+                      borderRadius: BorderRadius.circular(10)
                   ),
-                  height: 200,
-                  width: 300,
-                  margin: const EdgeInsets.all(10),
-                  child: const Center(
+                  height: MediaQuery.of(context).size.height*0.2,
+                  width: MediaQuery.of(context).size.width*0.42,
+                  margin: EdgeInsets.all(10),
+                  child: Center(
                     child: Text(
                       "",
                       style: TextStyle(color: Colors.white),
@@ -108,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 100,
                             ),
                             Center(
-                                child: Text("Sessional Veg's",
+                                child: Text("Seasonal Veg's",
                                   style: GoogleFonts.nunito(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -217,16 +235,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            Flexible(
-              child: ListView.builder(
-                itemCount: 15,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text("List $index"),
-                ),
-              ),
-            ),
+            // Flexible(
+            //   child: ListView.builder(
+            //     itemCount: 15,
+            //     physics: NeverScrollableScrollPhysics(),
+            //     shrinkWrap: true,
+            //     itemBuilder: (context, index) => ListTile(
+            //       title: Text("List $index"),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
