@@ -45,9 +45,9 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-       leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
-        actions: [
-          customwallet(),
+      // leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
+        actions: const [
+//          customwallet(),
         ],
         backgroundColor: Colors.white,
       ),
@@ -105,7 +105,7 @@ Widget customwallet(){
               SizedBox(width: 10,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text("My Wallet"),
                   Text("Rs 00.00"),
                 ],
