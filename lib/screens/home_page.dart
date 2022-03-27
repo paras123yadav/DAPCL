@@ -24,14 +24,25 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width*0.02,
                   right: MediaQuery.of(context).size.width*0.02,
-                  top:MediaQuery.of(context).size.width*0.01
+                  top:MediaQuery.of(context).size.width*0.03
               ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)
+              child: SizedBox(
+                height: 50,
+                child: TextFormField(
+                  cursorHeight: 24,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(
+                      fontSize: 18
                     ),
-                    labelText: "Search"
+                    hintText: "Search",
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    suffixIcon: Icon(Icons.search,color: Colors.black38),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                  ),
                 ),
               ),
             ),
@@ -106,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const DummyData()),
+                            MaterialPageRoute(builder: (context) => DummyData()),
                           );
                         },
                       )

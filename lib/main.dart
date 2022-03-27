@@ -24,15 +24,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:
-      phone==null?Login():Login(),
+      home: phone==null?Login():BottomNavigationBarController(phone: phone!, password: password!),
     );
   }
 }
 class BottomNavigationBarController extends StatefulWidget {
   final String phone;
   final String password;
-  BottomNavigationBarController({Key? key,required this.phone,required this.password}) : super(key: key);
+  const BottomNavigationBarController({Key? key,required this.phone,required this.password}) : super(key: key);
 
   @override
   _BottomNavigationBarControllerState createState() => _BottomNavigationBarControllerState();
@@ -41,7 +40,7 @@ class BottomNavigationBarController extends StatefulWidget {
 class _BottomNavigationBarControllerState extends State<BottomNavigationBarController> {
   int _selectedPage = 0;
   List<Widget> pageList = [];
-  String phone="",password="";
+  String phone="sdssd",password="sdsdsd";
 
   @override
   void initState() {
@@ -77,7 +76,7 @@ print("jklj"+phone+password);
                 PopupMenuItem(
                   onTap: (){
                   },
-                  child: Text("Logout"),
+                  child: const Text("Logout"),
                   value: "Logout",
                 ),
               ]

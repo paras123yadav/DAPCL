@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../cart/add_to_cart.dart';
 // ignore_for_file: prefer_const_constructors
-
+bool? x=false;
 class DummyData extends StatefulWidget {
   const DummyData({Key? key}) : super(key: key);
 
@@ -10,7 +10,6 @@ class DummyData extends StatefulWidget {
 }
 
 class _DummyDataState extends State<DummyData> {
-  bool x=false;
   Map<String,int> cart={};
   int data=0;
   int items=0;
@@ -18,6 +17,7 @@ class _DummyDataState extends State<DummyData> {
   List<String> vegnames=["Amla","Cabbage","Brocolli","Bathua"];
   List<String> vegprice=["250g @ 22.50","1 Kg @ 40.00 ","500 g @ 50.00","500 g @ 28.0"];
   List<int> datas=[0,0,0,0,0];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +42,11 @@ class _DummyDataState extends State<DummyData> {
           ],
         ),
       ),
-      floatingActionButton: x!=true?
-      customCartButton():Text(""),
+      floatingActionButton: customCartButton()
     );
+    //   x!=null?
+    //   customCartButton():Text(""),
+    // );
   }
 
   Widget customCartButton(){
@@ -58,42 +60,37 @@ class _DummyDataState extends State<DummyData> {
           setState(() {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const CartPage()),
+              MaterialPageRoute(builder: (context) => CartPage(cart)),
             );
           });
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.only(left: 28.0,right: 10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.lightGreen[800]
-            ),
-            child: Row(
-              children: [
-                const SizedBox(width: 14),
-                const Icon(Icons.shopping_bag,size: 36,color: Colors.white),
-                const SizedBox(width: 10,),
-                Wrap(
-                  direction: Axis.vertical,
-                  children: [
-                    Text("${cart.length} items",style: TextStyle(color: Colors.white)),
-                    Text("Rs 0.00",style: TextStyle(fontSize: 22,color: Colors.white)),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width*0.14,),
-                const Text("Add to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
-                const Icon(Icons.arrow_forward_ios_sharp,color: Colors.white),
-                const SizedBox(width: 10,)
-              ],
-            ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          height: 60,
+          width: MediaQuery.of(context).size.width*0.46,
+          decoration: BoxDecoration(
+              color: Colors.lightGreen[800]
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Icon(Icons.shopping_bag,size: 36,color: Colors.white),
+              custom()
+            ],
           ),
         ),
       ),
+    );
+
+  }
+  Widget custom(){
+    return Row(
+      children: const [
+        Text("Go to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
+        Icon(Icons.arrow_forward_ios_sharp,color: Colors.white),
+      ],
     );
   }
 }
@@ -110,7 +107,7 @@ class DummyClass extends StatefulWidget {
 class _DummyClassState extends State<DummyClass> {
   String? image,vegname,vegprices;
   int currData=0,currIdxs=0,finalitems=0;
-  late Map<String, int> addtocart;
+  Map<String, int> addtocart={};
   @override
   void initState() {
     super.initState();
@@ -124,73 +121,70 @@ class _DummyClassState extends State<DummyClass> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
         children: [
-          Column(
-              children: [
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(width: MediaQuery.of(context).size.width*0.01,),
-                    Card(child: Image.asset("assets/"+image!,height: 90,
-                      width: MediaQuery.of(context).size.width*0.28,)),
-                    SizedBox(width: MediaQuery.of(context).size.width*0.06,),
-                    Wrap(
-                      direction: Axis.vertical,
-                      children: [
-                        Text(vegname!,style: TextStyle(fontSize: 16)),
-                        Text(vegprices!,style: TextStyle(fontSize: 16)),
-                        SizedBox(height: 12),
-                      ],
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width*0.12),
-                    Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5)
-                        ),
-                        child: InkWell(
-                            onTap: (){
-                              if(currData>0) {
-                                setState(() {
-                                  currData-=1;
-                                  if(currData==0)
-                                  {
-                                    addtocart.remove(vegname);
-                                  }
-                                  else
-                                  {
-                                    addtocart[vegname!] = currData;
-                                  }
-                                });
-                              }
-                            },
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: MediaQuery.of(context).size.width*0.01,),
+              Card(child: Image.asset("assets/"+image!,height: 90,
+                width: MediaQuery.of(context).size.width*0.28,)),
+              SizedBox(width: MediaQuery.of(context).size.width*0.06,),
+              Wrap(
+                direction: Axis.vertical,
+                children: [
+                  Text(vegname!,style: TextStyle(fontSize: 16)),
+                  Text(vegprices!,style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 12),
+                ],
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width*0.12),
+              Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.5)
+                  ),
+                  child: InkWell(
+                      onTap: (){
+                        if(currData>0) {
+                          setState(() {
+                            currData-=1;
+                            if(currData==0)
+                            {
+                              addtocart.remove(vegname);
+                              x=null;
+                            }
+                            else
+                            {
+                              addtocart[vegname!] = currData;
+                            }
+                          });
+                        }
+                      },
 
-                            child: const Icon(Icons.remove))
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                    Text(currData.toString(),style: TextStyle(fontSize: 16)),
-                    SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                    Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5)
-                        ),
-                        child: InkWell(
-                            onTap: (){
-                              setState(() {
-                                currData++;
-                                addtocart[vegname.toString()]=currData;
-                                //items=addtocart.length;
-                              });
-                              // addtocart.forEach((key, value) {
-                              // });
-                            },
-                            child: const Icon(Icons.add)
-                        )
-                    ),
-                  ],
-                ),
-              ]
+                      child: const Icon(Icons.remove))
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width*0.03),
+              Text(currData.toString(),style: TextStyle(fontSize: 16)),
+              SizedBox(width: MediaQuery.of(context).size.width*0.03),
+              Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.5)
+                  ),
+                  child: InkWell(
+                      onTap: (){
+                        setState(() {
+                          currData++;
+                          addtocart[vegname.toString()]=currData;
+                          x=true;
+                        });
+                        // addtocart.forEach((key, value) {
+                        // });
+                      },
+                      child: const Icon(Icons.add)
+                  )
+              ),
+            ],
           ),
         ]
     );

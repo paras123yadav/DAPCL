@@ -1,29 +1,39 @@
+// To parse this JSON data, do
+//
+//     final LoginInfoe = LoginInfoeFromJson(jsonString);
+
 import 'dart:convert';
 
 LoginInfo LoginInfoFromJson(String str) => LoginInfo.fromJson(json.decode(str));
 
+String LoginInfoToJson(LoginInfo data) => json.encode(data.toJson());
 
 class LoginInfo {
   LoginInfo({
     this.status,
     this.message,
-    this.data,
+    required this.data,
   });
 
   String? status;
   String? message;
-  UserDetail? data;
+  List<UserDetails> data;
 
   factory LoginInfo.fromJson(Map<String, dynamic> json) => LoginInfo(
     status: json["status"],
     message: json["message"],
-    data: UserDetail.fromJson(json["data"]),
+    data: List<UserDetails>.from(json["data"].map((x) => UserDetails.fromJson(x))),
   );
 
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "message": message,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  };
 }
 
-class UserDetail {
-  UserDetail({
+class UserDetails {
+  UserDetails({
     this.userId,
     this.userName,
     this.userPhone,
@@ -37,7 +47,7 @@ class UserDetail {
     this.rewards,
     this.isVerified,
     this.block,
-    required this.regDate,
+    this.regDate,
   });
 
   int? userId;
@@ -53,9 +63,9 @@ class UserDetail {
   int? rewards;
   int? isVerified;
   int? block;
-  DateTime regDate;
+  DateTime? regDate;
 
-  factory UserDetail.fromJson(Map<String, dynamic> json) => UserDetail(
+  factory UserDetails.fromJson(Map<String, dynamic> json) => UserDetails(
     userId: json["user_id"],
     userName: json["user_name"],
     userPhone: json["user_phone"],
@@ -86,6 +96,6 @@ class UserDetail {
     "rewards": rewards,
     "is_verified": isVerified,
     "block": block,
-    "reg_date": regDate.toIso8601String(),
+    "reg_date": regDate?.toIso8601String(),
   };
 }
