@@ -88,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
   @override
-  bool showPassword = true;
+  bool showPassword = false;
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -188,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Wrap(
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width*0.796,
+                      width: MediaQuery.of(context).size.width*0.78,
                         child: buildTextField("Password",showPassword,0.9,true,passwordController,false)
                     ),
                     IconButton(
@@ -231,12 +231,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.025,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Wrap(
                   children: [
                     RaisedButton(
                       color: Colors.grey.shade300,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       onPressed: () {
@@ -253,6 +252,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               letterSpacing: 2.2,
                               color: Colors.black)),
                     ),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.04),
                     RaisedButton(
                       onPressed: () async{
                         // if (_formKey.currentState!.validate()){
@@ -262,11 +262,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       },
                       color: Colors.green,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      child: Text(
+                      child: const Text(
                         "Sign Up",
                         style: TextStyle(
                             fontSize: 16,
