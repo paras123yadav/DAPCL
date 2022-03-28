@@ -184,7 +184,8 @@ class _LoginState extends State<Login> {
                     //     )
                     // );
                     // print(emailController.text+" "+passwordController.text);
-                    a=verifyLogin(emailController.text,passwordController.text);
+                    a=await verifyLogin(emailController.text,passwordController.text);
+                    print(emailController.text);
                   },
                   color: Colors.green,
                   elevation: 0,
@@ -246,7 +247,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-  verifyLogin(String phone, String password) async{
+  Future<bool> verifyLogin(String phone, String password) async{
     var params={"user_phone":phone,
       "user_password":password
     };
@@ -255,8 +256,11 @@ class _LoginState extends State<Login> {
             .replace(queryParameters: params)
     );
     if(response.statusCode==200)
-    {var json=jsonDecode(response.body);
+    {
+      var json=jsonDecode(response.body);
+    print("SUccess1");
     if(json["status"]=="1") {
+      print("SUccess2");
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('user_phone', emailController.text);
       prefs.setString('user_password', passwordController.text);
@@ -270,6 +274,7 @@ class _LoginState extends State<Login> {
       // print("SUccess");
       return true;
     }
+
     else
     {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -277,6 +282,11 @@ class _LoginState extends State<Login> {
       return false;
     }
     }
-    return false;
+    else
+    {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please try after sometime!!")));
+      return false;
+    }
   }
 }
