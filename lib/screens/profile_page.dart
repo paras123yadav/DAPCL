@@ -88,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
   @override
-  bool showPassword = false;
+  bool showPassword = true;
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
