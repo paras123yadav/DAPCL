@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../CustomWidget/final_cart.dart';
 import '../cart/add_to_cart.dart';
 // ignore_for_file: prefer_const_constructors
 bool? x=false;
@@ -10,7 +11,6 @@ class DummyData extends StatefulWidget {
 }
 
 class _DummyDataState extends State<DummyData> {
-  Map<String,int> cart={};
   int data=0;
   int items=0;
   List<String> images=["fresh_fruits.jpg","fresh_veg.png","sessional_veg.jpg","veg.jpg"];
@@ -58,10 +58,11 @@ class _DummyDataState extends State<DummyData> {
         });
         if(cart.isNotEmpty) {
           setState(() {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CartPage(cart)),
-            );
+            print(cart.values);
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => CartPage()),
+            // );
           });
         }
       },
@@ -110,6 +111,7 @@ class _DummyClassState extends State<DummyClass> {
   Map<String, int> addtocart={};
   @override
   void initState() {
+    int? x;
     super.initState();
     image=widget.imag;
     vegname=widget.vegnam;
@@ -117,6 +119,12 @@ class _DummyClassState extends State<DummyClass> {
     addtocart=widget.cart;
     currIdxs=widget.currIdx;
     finalitems=widget.items;
+    if(cart.containsKey(vegname)==true)
+      {x=cart["$vegname"];
+      setState(() {
+        currData=x!;
+      });
+      }
   }
 
   @override
@@ -131,59 +139,71 @@ class _DummyClassState extends State<DummyClass> {
               Card(child: Image.asset("assets/"+image!,height: 90,
                 width: MediaQuery.of(context).size.width*0.28,)),
               SizedBox(width: MediaQuery.of(context).size.width*0.06,),
-              Wrap(
-                direction: Axis.vertical,
-                children: [
-                  Text(vegname!,style: TextStyle(fontSize: 16)),
-                  Text(vegprices!,style: TextStyle(fontSize: 16)),
-                  SizedBox(height: 12),
-                ],
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.2,
+                child: Wrap(
+                  direction: Axis.vertical,
+                  children: [
+                    Text(vegname!,style: TextStyle(fontSize: 16)),
+                    Text(vegprices!,style: TextStyle(fontSize: 16)),
+                    SizedBox(height: 12),
+                  ],
+                ),
               ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.12),
-              Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 0.5)
-                  ),
-                  child: InkWell(
-                      onTap: (){
-                        if(currData>0) {
-                          setState(() {
-                            currData-=1;
-                            if(currData==0)
-                            {
-                              addtocart.remove(vegname);
-                              x=null;
-                            }
-                            else
-                            {
-                              addtocart[vegname!] = currData;
-                            }
-                          });
-                        }
-                      },
+              SizedBox(width: MediaQuery.of(context).size.width*0.09),
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 0.5)
+                        ),
+                        child: InkWell(
+                            onTap: (){
+                              if(currData>0) {
+                                setState(() {
+                                  currData-=1;
+                                  if(currData==0)
+                                  {
+                                    addtocart.remove(vegname);
+                                    x=null;
+                                  }
+                                  else
+                                  {
+                                    addtocart[vegname!] = currData;
+                                  }
+                                });
+                              }
+                            },
 
-                      child: const Icon(Icons.remove))
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.03),
-              Text(currData.toString(),style: TextStyle(fontSize: 16)),
-              SizedBox(width: MediaQuery.of(context).size.width*0.03),
-              Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 0.5)
-                  ),
-                  child: InkWell(
-                      onTap: (){
-                        setState(() {
-                          currData++;
-                          addtocart[vegname.toString()]=currData;
-                          x=true;
-                        });
-                        // addtocart.forEach((key, value) {
-                        // });
-                      },
-                      child: const Icon(Icons.add)
-                  )
-              ),
+                            child: const Icon(Icons.remove))
+                    ),
+//                  SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                    Text(currData.toString(),style: TextStyle(fontSize: 16)),
+  //                SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 0.5)
+                        ),
+                        child: InkWell(
+                            onTap: (){
+                              setState(() {
+                                currData++;
+                                addtocart[vegname.toString()]=currData;
+                                x=true;
+                              });
+                              // addtocart.forEach((key, value) {
+                              // });
+                            },
+                            child: const Icon(Icons.add)
+                        )
+                    ),
+
+                  ],
+                ),
+              )
             ],
           ),
         ]

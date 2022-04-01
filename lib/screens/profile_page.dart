@@ -232,55 +232,48 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: MediaQuery.of(context).size.height*0.025,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FittedBox(
-                      child: RaisedButton(
-                        color: Colors.grey.shade300,
-                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context){
-                                return Login();
-                              }
-                              )
-                          );
-                        },
-                        child: Text("CANCEL",
-                            style: TextStyle(
-                                fontSize: 16,
-                                letterSpacing: 2.2,
-                                color: Colors.black)),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width*0.05,
-                    ),
-                    FittedBox(
-                      child: RaisedButton(
-                        onPressed: () async{
-                          // if (_formKey.currentState!.validate()){
-                          //   register(nameController.text, emailController.text,mobileController.text, passwordController.text);
-                          // }
-                          FetchUserInfo(widget.phone, widget.password);
-
-                        },
-                        color: Colors.green,
-                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: const Text(
-                          "Sign Up",
+                    RaisedButton(
+                      color: Colors.grey.shade300,
+                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context){
+                              return Login();
+                            }
+                            )
+                        );
+                      },
+                      child: Text("CANCEL",
                           style: TextStyle(
                               fontSize: 16,
                               letterSpacing: 2.2,
-                              color: Colors.white),
-                        ),
+                              color: Colors.black)),
+                    ),
+                    RaisedButton(
+                      onPressed: () async{
+                        // if (_formKey.currentState!.validate()){
+                        //   register(nameController.text, emailController.text,mobileController.text, passwordController.text);
+                        // }
+                        FetchUserInfo(widget.phone, widget.password);
+
+                      },
+                      color: Colors.green,
+                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            fontSize: 16,
+                            letterSpacing: 2.2,
+                            color: Colors.white),
                       ),
                     ),
-
                   ],
                 ),
                 SizedBox(

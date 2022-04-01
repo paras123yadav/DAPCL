@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ngo/screens/cart/add_to_cart.dart';
+import 'package:ngo/screens/dummy%20data/dummydata.dart';
 import 'package:ngo/screens/home_page.dart';
 import 'package:ngo/screens/login/login.dart';
 import 'package:ngo/screens/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'CustomWidget/final_cart.dart';
 String? phone;
 String? password;
 void main() async{
@@ -11,11 +15,11 @@ void main() async{
   phone = preferences.getString('user_phone');
   // print(email);
   password = preferences.getString('user_password');
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
 class BottomNavigationBarController extends StatefulWidget {
   final String phone;
   final String password;
-  const BottomNavigationBarController({Key? key,required this.phone,required this.password}) : super(key: key);
+  BottomNavigationBarController({Key? key,required this.phone,required this.password}) : super(key: key);
 
   @override
   _BottomNavigationBarControllerState createState() => _BottomNavigationBarControllerState();
@@ -41,7 +45,6 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
   int _selectedPage = 0;
   List<Widget> pageList = [];
   String phone="sdssd",password="sdsdsd";
-
   @override
   void initState() {
     super.initState();
@@ -52,6 +55,7 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
     // pageList.add(const HomeScreen());
     // pageList.add( ProfilePage(phone: phone,password: password,));
 print("jklj"+phone+password);
+
   }
 
   @override
@@ -92,12 +96,14 @@ print("jklj"+phone+password);
       //     customwallet(),
       //   ],
       //   backgroundColor: Colors.white,
+      // image pic + image name: quantity
       // ),
       body: IndexedStack(
         index: _selectedPage,
         children: [
-          HomeScreen(phone: phone,password: password,),
-          ProfilePage(phone: phone,password: password,),
+          HomeScreen(phone: phone,password: password),
+          CartPage(phone,password),
+//          ProfilePage(phone: phone,password: password,),
           HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
         ],

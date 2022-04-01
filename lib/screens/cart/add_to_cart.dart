@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 class CartPage extends StatefulWidget {
-  Map<String, int> cart;
-  CartPage(this.cart, {Key? key}) : super(key: key);
+  String phone,password;
+  CartPage(this.phone,this.password,{Key? key}) : super(key: key);
 
   @override
   State<CartPage> createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
-  Map<String, int> finalcart={};
+
   var finallist=[];
   @override
   void initState() {
     super.initState();
-    finalcart=widget.cart;
-    finalcart.forEach((k, v)
-            {
-              finallist.add(finalcart);
-            }
-            );
     print(finallist);
   }
   @override

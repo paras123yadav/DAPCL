@@ -81,10 +81,10 @@ class _LoginState extends State<Login> {
               // },
               decoration: const InputDecoration(
                 hintStyle: TextStyle(fontSize: 20),
-                prefixIcon: Icon(Icons.email),
+                prefixIcon: Icon(Icons.phone),
                 border: OutlineInputBorder(),
                 // labelText: 'Email',
-                hintText: 'Email',
+                hintText: 'Phone',
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color:Colors.black),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
