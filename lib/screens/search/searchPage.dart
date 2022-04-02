@@ -113,8 +113,8 @@ class _Dummy2State extends State<Dummy2> {
     // addtocart=widget.cart;
     // currIdxs=widget.currIdx;
     // finalitems=widget.items;
-    if(cart.containsKey(vegname)==true)
-    {x=cart[vegname];
+    if(cart.containsKey(vegname+vegprices)==true)
+    {x=cart[vegname+vegprices];
     setState(() {
       currData=x!;
     });
@@ -166,11 +166,11 @@ class _Dummy2State extends State<Dummy2> {
                                   currData-=1;
                                   if(currData==0)
                                   {
-                                    cart.remove(vegname);
+                                    cart.remove(vegname+vegprices);
                                   }
                                   else
                                   {
-                                    cart[vegname] = currData;
+                                    cart[vegname+vegprices] = currData;
                                   }
                                 });
                               }
@@ -190,7 +190,7 @@ class _Dummy2State extends State<Dummy2> {
                             onTap: (){
                               setState(() {
                                 currData++;
-                                cart[vegname.toString()]=currData;
+                                cart[vegname+vegprices]=currData;
                               });
                               print(cart.values);
                               // cart.forEach((key, value) {
