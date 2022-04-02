@@ -69,8 +69,10 @@ print("jklj"+phone+password);
           PopupMenuButton(
               elevation: 20,
               enabled: true,
-              onSelected: (value) {
-                Navigator.push(
+              onSelected: (value) async {
+                SharedPreferences preferences = await SharedPreferences.getInstance();
+                await preferences.clear();
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Login()),
                 );

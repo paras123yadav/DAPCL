@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:ngo/CustomWidget/input_widgets.dart';
 import 'package:ngo/screens/login/login.dart';
 import 'dart:convert';
 
