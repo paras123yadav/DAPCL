@@ -120,7 +120,8 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
-                                color: Colors.grey.withOpacity(0.15)),
+                                color: Colors.grey.withOpacity(0.15)
+                            ),
                             child: Wrap(
                               children: [
                                 Text(
