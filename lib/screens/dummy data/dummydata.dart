@@ -59,10 +59,15 @@ class _DummyDataState extends State<DummyData> {
         if(cart.isNotEmpty) {
           setState(() {
             print(cart.values);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CartPage()),
-            );
+            setState(() {
+              finalval=false;
+              finalAppBar=true;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+
+            });
           });
         }
       },

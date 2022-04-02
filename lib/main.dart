@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngo/screens/cart/add_to_cart.dart';
+import 'package:ngo/screens/cart/empty_cart.dart';
 import 'package:ngo/screens/dummy%20data/dummydata.dart';
 import 'package:ngo/screens/home_page.dart';
 import 'package:ngo/screens/login/login.dart';
@@ -104,7 +105,8 @@ print("jklj"+phone+password);
         index: _selectedPage,
         children: [
           HomeScreen(phone: phone,password: password),
-          CartPage(),
+          EmptyCart(),
+          //  finalval==true?const EmptyCart():CartPage(),
 //          ProfilePage(phone: phone,password: password,),
           HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
@@ -139,6 +141,7 @@ print("jklj"+phone+password);
   void _onItemTapped(int index) {
     setState(() {
       _selectedPage = index;
+      finalAppBar=false;
     });
   }
 Widget customwallet(){

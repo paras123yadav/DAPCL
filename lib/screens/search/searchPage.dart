@@ -42,7 +42,7 @@ class _SearchPageState extends State<SearchPage> {
                     return Dummy2(
                         //productDetails[index].productImage.toString(),
                         productDetails[index].productName.toString(),
-                      productDetails[index].varients[0].quantity.toString()+productDetails[index].varients[0].unit.toString()+" @ Rs"+productDetails[index].varients[0].price.toString(),
+                      "@"+productDetails[index].varients[0].quantity.toString()+productDetails[index].varients[0].unit.toString()+" @ "+productDetails[index].varients[0].price.toString(),
                       // vegprice[index],
                         //cart,index,items
                     );
