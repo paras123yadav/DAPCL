@@ -28,6 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
   TextEditingController emailController=TextEditingController();
+  TextEditingController userController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
   TextEditingController nameController=TextEditingController();
   TextEditingController mobileController=TextEditingController();
@@ -41,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   FetchUserInfo(String phone, String password) async {
     //print("ppppppp1");
-    var params={"user_phone":phone,
+    var params={"user_email":phone,
       "user_password":password
     };
     var response=await http.post(
@@ -63,6 +64,12 @@ class _ProfilePageState extends State<ProfilePage> {
           emailController.text=userDetail[0].userEmail!;
           passwordController.text=userDetail[0].userPassword!;
           mobileController.text=userDetail[0].userPhone!;
+          if(userDetail[0].userType=="1"){
+            userController.text="Buyer";
+          }
+          else{
+            userController.text="Seller";
+          }
         }
       });
       //print("adaas");
@@ -185,11 +192,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 buildTextField("Name", false,0.4,true,nameController,false),
                 buildTextField("E-mail", false,0.9,true,emailController,false),
+                buildTextField("UserType", false,0.9,true,userController,false),
                 Wrap(
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width*0.78,
-                        child: buildTextField("Password",showPassword,0.9,true,passwordController,false)
+                        child: buildTextField("Password",showPassword,0.9,false,passwordController,false)
                     ),
                     IconButton(
                       onPressed: () {

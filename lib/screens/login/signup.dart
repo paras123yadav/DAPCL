@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:ngo/CustomWidget/input_widgets.dart';
 import 'package:ngo/screens/login/login.dart';
 import 'dart:convert';
 
@@ -26,7 +28,11 @@ class _SignupState extends State<Signup> {
   TextEditingController stateController=TextEditingController();
   final _formKey = GlobalKey<FormState>();
   File? _profilePic=File("assets/noimage.png");
-
+  String? selectedUserType;
+  final List<String> userType = [
+    "Buyer",
+    "Seller"
+  ];
   Future<void> takeMedia() async {
     final XFile? media = await ImagePicker().pickImage(source: ImageSource.gallery, maxHeight: 720, maxWidth: 720);
     if (media != null) {
@@ -156,6 +162,36 @@ class _SignupState extends State<Signup> {
                     ],
                   ),
                 ),
+                Row(
+                    children: [
+                      Text("Select the type of User",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.black54),),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+
+                        // dropdown below..
+                        child: DropdownButton<String>(
+                          value: selectedUserType,
+                          onChanged: (String? newValue) =>
+                              setState(() => selectedUserType = newValue),
+                          items: userType
+                              .map<DropdownMenuItem<String>>(
+                                  (String value) => DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value,style: TextStyle(fontSize: 18)),
+                              ))
+                              .toList(),
+
+                          // add extra sugar..
+                          icon: Icon(Icons.arrow_drop_down),
+                          iconSize: 42,
+                          underline: SizedBox(),
+                        ),
+                      ),
+                    ]
+                ),
 
 
                 SizedBox(
@@ -186,7 +222,7 @@ class _SignupState extends State<Signup> {
                     RaisedButton(
                       onPressed: () async{
                         if (_formKey.currentState!.validate()){
-                          register(nameController.text, emailController.text,mobileController.text, passwordController.text);
+                          register(nameController.text, emailController.text,mobileController.text, passwordController.text,selectedUserType!);
                         }
 
                       },
@@ -259,13 +295,19 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
-  register(String Name,String Email,String phone, String password) async{
+  register(String Name,String Email,String phone, String password, String selectedValue) async{
+    String userType="2";
+    if(selectedValue=='Buyer'){
+      setState(() {
+        userType="1";
+      });
+    }
     var params={
       "user_name":Name,
       "user_email":Email,
       "user_phone":phone,
       "user_password":password,
-
+      "user_type":userType
     };
     var response=await http.post(
         Uri.parse(registeration)
@@ -293,3 +335,7 @@ class _SignupState extends State<Signup> {
     return false;
   }
 }
+/*
+"user_password:harry4415@1
+user_email:ayush.filmitics@gmail.com
+*/

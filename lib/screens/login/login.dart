@@ -81,10 +81,10 @@ class _LoginState extends State<Login> {
               // },
               decoration: const InputDecoration(
                 hintStyle: TextStyle(fontSize: 20),
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.mail),
                 border: OutlineInputBorder(),
                 // labelText: 'Email',
-                hintText: 'Phone',
+                hintText: 'Email',
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color:Colors.black),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -248,7 +248,7 @@ class _LoginState extends State<Login> {
     );
   }
   Future<bool> verifyLogin(String phone, String password) async{
-    var params={"user_phone":phone,
+    var params={"user_email":phone,
       "user_password":password
     };
     var response=await http.post(
@@ -262,7 +262,7 @@ class _LoginState extends State<Login> {
     if(json["status"]=="1") {
       print("SUccess2");
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('user_phone', emailController.text);
+      prefs.setString('user_email', emailController.text);
       prefs.setString('user_password', passwordController.text);
 
       Navigator.pushReplacement(context,

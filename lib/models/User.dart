@@ -48,11 +48,13 @@ class UserDetails {
     this.isVerified,
     this.block,
     this.regDate,
+    this.userType
   });
 
   int? userId;
   String? userName;
   String? userPhone;
+  String? userType;
   String? userEmail;
   dynamic deviceId;
   String? userImage;
@@ -64,6 +66,7 @@ class UserDetails {
   int? isVerified;
   int? block;
   DateTime? regDate;
+
 
   factory UserDetails.fromJson(Map<String, dynamic> json) => UserDetails(
     userId: json["user_id"],
@@ -80,6 +83,7 @@ class UserDetails {
     isVerified: json["is_verified"],
     block: json["block"],
     regDate: DateTime.parse(json["reg_date"]),
+    userType: json["user_type"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -97,5 +101,6 @@ class UserDetails {
     "is_verified": isVerified,
     "block": block,
     "reg_date": regDate?.toIso8601String(),
+    "user_type":userType
   };
 }
