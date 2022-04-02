@@ -104,7 +104,7 @@ print("jklj"+phone+password);
         index: _selectedPage,
         children: [
           HomeScreen(phone: phone,password: password),
-          CartPage(phone,password),
+          CartPage(),
 //          ProfilePage(phone: phone,password: password,),
           HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
