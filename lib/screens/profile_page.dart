@@ -242,25 +242,26 @@ class _ProfilePageState extends State<ProfilePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RaisedButton(
-                      color: Colors.grey.shade300,
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context){
-                              return Login();
-                            }
-                            )
-                        );
-                      },
-                      child: Text("CANCEL",
-                          style: TextStyle(
-                              fontSize: 16,
-                              letterSpacing: 2.2,
-                              color: Colors.black)),
-                    ),
+                    // RaisedButton(
+                    //   color: Colors.grey.shade300,
+                    //   padding: EdgeInsets.symmetric(
+                    //       horizontal: MediaQuery.of(context).size.width*0.09),
+                    //   shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(20)),
+                    //   onPressed: () {
+                    //     Navigator.pushReplacement(context,
+                    //         MaterialPageRoute(builder: (context){
+                    //           return Login();
+                    //         }
+                    //         )
+                    //     );
+                    //   },
+                    //   child: Text("Cancel",
+                    //       style: TextStyle(
+                    //           fontSize: 16,
+                    //           letterSpacing: 2.2,
+                    //           color: Colors.black)),
+                    // ),
                     RaisedButton(
                       onPressed: () async{
                         // if (_formKey.currentState!.validate()){
@@ -270,14 +271,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       },
                       color: Colors.green,
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.12),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width*0.2),
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       child: const Text(
-                        "Sign Up",
+                        "Save",
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 20,
                             letterSpacing: 2.2,
                             color: Colors.white),
                       ),

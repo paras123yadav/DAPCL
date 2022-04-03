@@ -116,22 +116,20 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                       child: InkWell(
                         child: Container(
                             margin: const EdgeInsets.all(7.5),
-                            height: 100,
+                            height: 150,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)
                             ),
-                            child: Wrap(
-                              children: [
-                                Text(
-                                "Products Added",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 26
-                                ),
+                            child: Center(
+                              child: Text(
+                              "Products Added",
+                              style: GoogleFonts.nunito(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22
                               ),
-                                ]
+                              ),
                             )),
                         onTap: () {
                           // Navigator.push(
@@ -144,7 +142,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                       child: InkWell(
                         child: Container(
                             margin: const EdgeInsets.all(7.5),
-                            height: 100,
+                            height: 150,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -154,6 +152,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 "Total Items Sold",
                                 style: GoogleFonts.nunito(
                                   fontWeight: FontWeight.bold,
+                                    fontSize: 22
                                 ),
                               ),
                             )),
@@ -171,7 +170,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                       child: InkWell(
                         child: Container(
                             margin: const EdgeInsets.all(7.5),
-                            height: 100,
+                            height: 150,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -181,6 +180,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                   "Total Items Sold in Last Week",
                                   style: GoogleFonts.nunito(
                                     fontWeight: FontWeight.bold,
+                                      fontSize: 22
                                   ),
                                 ))),
                         onTap: () {
@@ -191,6 +191,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 style: GoogleFonts.nunito(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
+                                    fontSize: 22
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -203,7 +204,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                       child: InkWell(
                         child: Container(
                             margin: const EdgeInsets.all(7.5),
-                            height: 100,
+                            height: 150,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -214,6 +215,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.nunito(
                                     fontWeight: FontWeight.bold,
+                                      fontSize: 22
                                   ),
                                 ))),
                         onTap: () {},

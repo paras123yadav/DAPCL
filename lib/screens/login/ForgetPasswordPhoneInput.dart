@@ -149,7 +149,7 @@ class _phoneInputPasswordState extends State<phoneInputPassword> {
     if(response.statusCode==200)
     {var json=jsonDecode(response.body);
     if(json["status"]=="1") {
-
+      print(phone);
       Navigator.push(context,
           MaterialPageRoute(builder: (context){
             return PinCodeVerificationScreenPassword(phone);

@@ -220,9 +220,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "Exotic Fruits and Vegetables",
-                              style: GoogleFonts.nunito(),
+                            Center(
+                              child: Text(
+                                "Exotic Fruits and Vegetables",
+                                style: GoogleFonts.nunito(),
+                              ),
                             )
                           ],
                         )),

@@ -165,6 +165,8 @@ class _newPasswordScreenState extends State<newPasswordScreen> {
      if (response.statusCode == 200) {
        var json = jsonDecode(response.body);
        print("SUccess1");
+       print(json["message"]);
+       print(phoneNumber);
        if (json["status"] == "1") {
          Navigator.push(context,
              MaterialPageRoute(builder: (context){
@@ -174,7 +176,7 @@ class _newPasswordScreenState extends State<newPasswordScreen> {
          );
        } else {
          ScaffoldMessenger.of(context).showSnackBar(
-             const SnackBar(content: Text("Invalid credentials !!")));
+             const SnackBar(content: Text("Fuck Y !!")));
          return false;
        }
      } else {

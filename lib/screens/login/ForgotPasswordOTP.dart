@@ -198,10 +198,11 @@ class _PinCodeVerificationScreenPasswordState extends State<PinCodeVerificationS
                     onPressed: () {
                       formKey.currentState!.validate();
                       // conditions for validating
-                      if (currentText.length != 6 || currentText != "1234") {
+                      if (currentText.length != 4 || currentText == "1234") {
+                        print(widget.phoneNumber);
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context){
-                              return newPasswordScreen(phone);
+                              return newPasswordScreen(widget.phoneNumber);
                             }
                             )
                         );

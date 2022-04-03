@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ngo/screens/cart/add_to_cart.dart';
 import 'package:ngo/screens/cart/empty_cart.dart';
 import 'package:ngo/screens/dummy%20data/dummydata.dart';
+import 'package:ngo/screens/farmers_dashboard.dart';
 import 'package:ngo/screens/home_page.dart';
 import 'package:ngo/screens/login/login.dart';
 import 'package:ngo/screens/profile_page.dart';
@@ -104,6 +105,7 @@ print("jklj"+phone+password);
       body: IndexedStack(
         index: _selectedPage,
         children: [
+        //  FarmersScreen2(phone: phone, password: password),
           HomeScreen(phone: phone,password: password),
           EmptyCart(),
           //  finalval==true?const EmptyCart():CartPage(),

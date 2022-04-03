@@ -327,10 +327,12 @@ class _SignupState extends State<Signup> {
     else
     {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Invalid credentials !!")));
+          const SnackBar(content: Text("User Already Registered !!")));
       return false;
     }
     }
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please Try After Some Time !!")));
     return false;
   }
 }
