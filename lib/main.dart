@@ -107,8 +107,8 @@ print("jklj"+phone+password);
         children: [
         //  FarmersScreen2(phone: phone, password: password),
           HomeScreen(phone: phone,password: password),
-          EmptyCart(),
-          //  finalval==true?const EmptyCart():CartPage(),
+          //EmptyCart(),
+           cart.isEmpty?EmptyCart():CartPage(),
 //          ProfilePage(phone: phone,password: password,),
           HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)

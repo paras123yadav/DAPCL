@@ -323,9 +323,13 @@ class _cartListState extends State<cartList> {
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
           child: Column(
+
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.005,
+              ),
               //    SizedBox(width: MediaQuery.of(context).size.width*0.02,),
               // Card(child: Image.asset("assets/"+image!,height: 90,
               //   width: MediaQuery.of(context).size.width*0.28,)),

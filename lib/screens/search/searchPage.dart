@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
                               .toString() +
                           productDetails[index].varients[0].unit.toString() +
                           " @ " +
-                          productDetails[index].varients[0].price.toString(),
+                          productDetails[index].varients[0].mrp.toString(),
                       // vegprice[index],
                       //cart,index,items
                     );

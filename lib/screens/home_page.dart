@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngo/screens/search/searchPage.dart';
+import 'package:ngo/vegetables.dart';
 // ignore_for_file: prefer_const_constructors
 import '../api/constant.dart';
 import '../models/Search.dart';
@@ -129,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Center(
                                 child: Text(
-                              "Fresh Veg's",
+                              "Fresh Veggies",
                               style: GoogleFonts.nunito(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -138,9 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 10,
                             ),
                             FittedBox(
-                              child: Text(
-                                "Available all year round",
-                                style: GoogleFonts.nunito(),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width*0.3,
+                                child: Text(
+                                  "Available all year round",
+                                  style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             )
                           ],
@@ -148,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => DummyData()),
+                        MaterialPageRoute(builder: (context) => VegetableListPage()),
                       );
                     },
                   )),
@@ -169,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Center(
                                 child: Text(
-                              "Seasonal Veg's",
+                              "Seasonal Veggies",
                               style: GoogleFonts.nunito(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -178,9 +183,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 10,
                             ),
                             FittedBox(
-                              child: Text(
-                                "Freshly Hand Picked",
-                                style: GoogleFonts.nunito(),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width*0.3,
+                                child: Text(
+                                  "Freshly Hand Picked",
+                                  style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             )
                           ],
@@ -221,9 +230,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 10,
                             ),
                             Center(
-                              child: Text(
-                                "Exotic Fruits and Vegetables",
-                                style: GoogleFonts.nunito(),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width*0.3,
+                                child: Text(
+                                  "Exotic Fruits and Vegetables",
+                                  style: GoogleFonts.nunito(),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             )
                           ],
@@ -275,7 +288,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ],
                         )),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => VegetableListPage()),);
+                    },
                   )),
                 ],
               ),
