@@ -234,8 +234,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.025,
                 ),
