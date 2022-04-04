@@ -1,4 +1,4 @@
 Map<String,int> cart={};
-bool finalval=true;
+bool finalval=false;
 bool finalAppBar=true;
 

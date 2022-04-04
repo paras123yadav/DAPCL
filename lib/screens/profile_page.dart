@@ -197,7 +197,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width*0.78,
-                        child: buildTextField("Password",showPassword,0.9,false,passwordController,false)
+                        child: buildTextField("Password",showPassword,0.65,false,passwordController,false)
                     ),
                     IconButton(
                       onPressed: () {
