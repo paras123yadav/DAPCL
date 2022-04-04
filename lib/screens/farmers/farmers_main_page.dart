@@ -1,51 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:ngo/screens/cart/add_to_cart.dart';
-import 'package:ngo/screens/cart/empty_cart.dart';
-import 'package:ngo/screens/farmers/farmers_dashboard.dart';
-import 'package:ngo/screens/farmers/farmers_main_page.dart';
-import 'package:ngo/screens/home_page.dart';
-import 'package:ngo/screens/login/login.dart';
-import 'package:ngo/screens/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'CustomWidget/final_cart.dart';
-String? phone;
-String? password;
-bool cartText=true;
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  phone = preferences.getString('user_phone');
-  // print(email);
-  password = preferences.getString('user_password');
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: phone==null?Login():BottomNavigationBarController2(phone: phone!, password: password!),
-//    home: Login(),
-    );
-  }
-}
-class BottomNavigationBarController extends StatefulWidget {
+import '../../CustomWidget/final_cart.dart';
+import '../cart/add_to_cart.dart';
+import '../cart/empty_cart.dart';
+import '../login/login.dart';
+import '../profile_page.dart';
+import 'farmers_dashboard.dart';
+class BottomNavigationBarController2 extends StatefulWidget {
   final String phone;
   final String password;
-  BottomNavigationBarController({Key? key,required this.phone,required this.password}) : super(key: key);
+  BottomNavigationBarController2({Key? key,required this.phone,required this.password}) : super(key: key);
 
   @override
-  _BottomNavigationBarControllerState createState() => _BottomNavigationBarControllerState();
+  _BottomNavigationBarController2State createState() => _BottomNavigationBarController2State();
 }
 
-class _BottomNavigationBarControllerState extends State<BottomNavigationBarController> {
+class _BottomNavigationBarController2State extends State<BottomNavigationBarController2> {
   int _selectedPage = 0;
   List<Widget> pageList = [];
   String phone="sdssd",password="sdsdsd";
@@ -58,7 +29,7 @@ class _BottomNavigationBarControllerState extends State<BottomNavigationBarContr
     // pageList.add( ProfilePage(phone: phone,password: password,));
     // pageList.add(const HomeScreen());
     // pageList.add( ProfilePage(phone: phone,password: password,));
-print("jklj"+phone+password);
+    print("jklj"+phone+password);
 
   }
 
@@ -107,12 +78,12 @@ print("jklj"+phone+password);
       body: IndexedStack(
         index: _selectedPage,
         children: [
-        FarmersScreen2(phone: phone, password: password),
+          FarmersScreen2(phone: phone, password: password),
           //HomeScreen(phone: phone,password: password),
           //EmptyCart(),
-           cart.isEmpty?EmptyCart():CartPage(),
+          cart.isEmpty?EmptyCart():CartPage(),
 //          ProfilePage(phone: phone,password: password,),
-          HomeScreen(phone: phone,password: password,),
+//          HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
         ],
       ),
@@ -125,12 +96,12 @@ print("jklj"+phone+password);
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_shopping_cart),
-            label: "Cart",
+            label: "Add Product",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.track_changes),
-            label: "Track",
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.track_changes),
+          //   label: 'Track',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
             label: 'Profile',
@@ -148,16 +119,16 @@ print("jklj"+phone+password);
       finalAppBar=false;
     });
   }
-Widget customwallet(){
+  Widget customwallet(){
     return InkWell(
       onTap: (){},
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(5),
-          side: const BorderSide(
-            width: 1,
-            color: Colors.grey
-          )
+            borderRadius: BorderRadiusDirectional.circular(5),
+            side: const BorderSide(
+                width: 1,
+                color: Colors.grey
+            )
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 4.0,right: 4),
@@ -177,5 +148,5 @@ Widget customwallet(){
         ),
       ),
     );
-}
+  }
 }

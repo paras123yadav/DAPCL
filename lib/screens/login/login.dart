@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo/CustomWidget/background.dart';
 import 'package:ngo/api/constant.dart';
-import 'package:ngo/main.dart';
 import 'package:ngo/screens/login/ForgetPasswordPhoneInput.dart';
-import 'package:ngo/screens/login/otp.dart';
 import 'package:ngo/screens/login/phone.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../main.dart';
+import '../../models/User.dart';
+import '../farmers/farmers_main_page.dart';
 import 'signup.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -18,9 +18,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   late String email;
-
   late String password;
-
+  late List<UserDetails> userDetail;
   bool showPassword = true;
 
   bool isPasswordTextField = true;
@@ -272,18 +271,33 @@ class _LoginState extends State<Login> {
         .post(Uri.parse(validateUser).replace(queryParameters: params));
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
+      var data=LoginInfo.fromJson(json);
       print("SUccess1");
       if (json["status"] == "1") {
+        setState(() {
+          if(data.data!=null) {
+            //     print("ppppppp3");
+            userDetail = data.data;
+          }
+        });
         print("SUccess2");
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('user_email', emailController.text);
         prefs.setString('user_password', passwordController.text);
-
-        Navigator.pushReplacement(context,
+        if(userDetail[0].userType=="1") {
+          Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
           return BottomNavigationBarController(
               phone: phone, password: password);
         }));
+        }
+        else{
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) {
+                return BottomNavigationBarController2(
+                    phone: phone, password: password);
+              }));
+        }
         // print("SUccess");
         return true;
       } else {

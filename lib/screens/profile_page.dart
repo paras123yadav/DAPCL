@@ -94,8 +94,9 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
-  @override
   bool showPassword = false;
+  bool showPassword2 = true;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -197,12 +198,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width*0.78,
-                        child: buildTextField("Password",showPassword,0.65,false,passwordController,false)
+                        child: buildTextField("Password",showPassword2,0.65,false,passwordController,false)
                     ),
                     IconButton(
                       onPressed: () {
                         setState(() {
-                          showPassword = !showPassword;
+                          showPassword2 = !showPassword2;
                         });
                       },
                       icon: Icon(
@@ -296,7 +297,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buildTextField(
-      String labelText, bool isPasswordTextField,double size,bool a,TextEditingController currcntrlr, bool val) {
+      String labelText,bool isPasswordTextField,double size,bool a,TextEditingController currcntrlr, bool val) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: SizedBox(

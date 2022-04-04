@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngo/screens/search/searchPage.dart';
-// ignore_for_file: prefer_const_constructors
-import '../api/constant.dart';
-import '../models/Search.dart';
-import 'dummy data/dummydata.dart';
+import '../../api/constant.dart';
+import '../../models/Search.dart';
+import '../dummy data/dummydata.dart';
 class FarmersScreen2 extends StatefulWidget {
   final String phone, password;
   const FarmersScreen2({Key? key, required this.phone, required this.password})
@@ -90,8 +87,8 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                       borderRadius: BorderRadius.circular(10)),
                   height: MediaQuery.of(context).size.height * 0.2,
                   width: MediaQuery.of(context).size.width * 0.42,
-                  margin: EdgeInsets.all(10),
-                  child: Center(
+                  margin: const EdgeInsets.all(10),
+                  child: const Center(
                     child: Text(
                       "",
                       style: TextStyle(color: Colors.white),
@@ -123,12 +120,16 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 color: Colors.grey.withOpacity(0.15)
                             ),
                             child: Center(
-                              child: Text(
-                              "Products Added",
-                              style: GoogleFonts.nunito(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22
-                              ),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width*0.35,
+                                child: Text(
+                                "Products Added",
+                                style: GoogleFonts.nunito(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             )),
                         onTap: () {
@@ -148,11 +149,15 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)),
                             child: Center(
-                              child: Text(
-                                "Total Items Sold",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.bold,
-                                    fontSize: 22
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width*0.35,
+                                child: Text(
+                                  "Total Items Sold",
+                                  style: GoogleFonts.nunito(
+                                    fontWeight: FontWeight.bold,
+                                      fontSize: 22
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                             )),
@@ -161,7 +166,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Row(
@@ -176,11 +181,15 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)),
                             child: Center(
-                                child: Text(
-                                  "Total Items Sold in Last Week",
-                                  style: GoogleFonts.nunito(
-                                    fontWeight: FontWeight.bold,
-                                      fontSize: 22
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width*0.35,
+                                  child: Text(
+                                    "Total Items Sold in Last Week",
+                                    style: GoogleFonts.nunito(
+                                      fontWeight: FontWeight.bold,
+                                        fontSize: 22
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ))),
                         onTap: () {
@@ -210,12 +219,15 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)),
                             child: Center(
-                                child: Text(
-                                  "Wallet",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.nunito(
-                                    fontWeight: FontWeight.bold,
-                                      fontSize: 22
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width*0.35,
+                                  child: Text(
+                                    "Wallet",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontWeight: FontWeight.bold,
+                                        fontSize: 22
+                                    ),
                                   ),
                                 ))),
                         onTap: () {},
@@ -239,6 +251,4 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
       ),
     );
   }
-
-
 }
