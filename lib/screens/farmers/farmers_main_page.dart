@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ngo/screens/farmers/addProduct.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../CustomWidget/final_cart.dart';
@@ -80,7 +81,8 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
         children: [
           FarmersScreen2(phone: phone, password: password),
           //HomeScreen(phone: phone,password: password),
-          cart.isEmpty?EmptyCart():CartPage(),
+          // cart.isEmpty?EmptyCart():CartPage(),
+          addProduct(),
 //          ProfilePage(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
         ],
