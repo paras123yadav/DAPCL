@@ -7,8 +7,8 @@ import 'package:ngo/screens/home_page.dart';
 import 'package:ngo/screens/login/login.dart';
 import 'package:ngo/screens/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'CustomWidget/final_cart.dart';
+
 String? phone;
 String? password;
 bool cartText=true;
@@ -107,8 +107,8 @@ print("jklj"+phone+password);
       body: IndexedStack(
         index: _selectedPage,
         children: [
-        FarmersScreen2(phone: phone, password: password),
-          //HomeScreen(phone: phone,password: password),
+        //FarmersScreen2(phone: phone, password: password),
+          HomeScreen(phone: phone,password: password),
           //EmptyCart(),
            cart.isEmpty?EmptyCart():CartPage(),
 //          ProfilePage(phone: phone,password: password,),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngo/screens/search/searchPage.dart';
+import 'package:ngo/screens/wallet/wallet_page.dart';
 import '../../api/constant.dart';
 import '../../models/Search.dart';
 import '../dummy data/dummydata.dart';
@@ -230,7 +231,12 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                     ),
                                   ),
                                 ))),
-                        onTap: () {},
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return const WalletScreen();
+                              }));
+                        },
                       )),
                 ],
               ),

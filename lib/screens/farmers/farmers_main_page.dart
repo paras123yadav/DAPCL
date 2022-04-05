@@ -80,10 +80,8 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
         children: [
           FarmersScreen2(phone: phone, password: password),
           //HomeScreen(phone: phone,password: password),
-          //EmptyCart(),
           cart.isEmpty?EmptyCart():CartPage(),
 //          ProfilePage(phone: phone,password: password,),
-//          HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
         ],
       ),
