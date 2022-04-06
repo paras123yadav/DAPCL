@@ -50,7 +50,7 @@ class _VegetableListPageState extends State<VegetableListPage> {
                     while(i-->=0){
 
                     return Dummy2(
-                      //productDetails[index].productImage.toString(),
+                      productDetails[index].productImage.toString(),
                       productDetails[j].productName.toString(),
                       "@" +
                           productDetails[j]
@@ -162,12 +162,12 @@ class _VegetableListPageState extends State<VegetableListPage> {
 }
 
 class Dummy2 extends StatefulWidget {
-  //String imag;
+  String imag;
   String vegnam, vegprice;
   //,vegprice;
   //int currIdx,items;
 //  Map<String, int> cart;
-  Dummy2(this.vegnam, this.vegprice, {Key? key}) : super(key: key);
+  Dummy2(this.imag,this.vegnam, this.vegprice, {Key? key}) : super(key: key);
 
   @override
   State<Dummy2> createState() => _Dummy2State();
@@ -181,7 +181,7 @@ class _Dummy2State extends State<Dummy2> {
   void initState() {
     int? x;
     super.initState();
-//    image=widget.imag;
+   image=widget.imag;
     vegname = widget.vegnam;
     vegprices = widget.vegprice;
     // addtocart=widget.cart;
@@ -218,9 +218,10 @@ class _Dummy2State extends State<Dummy2> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4.0),
                           child: Card(
-                              child: Image.asset(
-                                "assets/veg.jpg",
+                              child: Image.network(
+                                "https://farmer.cropnet.co.in/$image",
                                 height: 90,
+                                fit: BoxFit.contain,
                                 width: MediaQuery.of(context).size.width * 0.28,
                               )),
                         ),

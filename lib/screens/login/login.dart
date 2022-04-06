@@ -284,18 +284,20 @@ class _LoginState extends State<Login> {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('user_email', emailController.text);
         prefs.setString('user_password', passwordController.text);
+        prefs.setString('user_ID', userDetail[0].userId.toString());
+        print(userDetail[0].userId.toString());
         if(userDetail[0].userType=="1") {
           Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
           return BottomNavigationBarController(
-              phone: phone, password: password);
+              phone: phone, password: password,userID: userDetail[0].userId.toString());
         }));
         }
         else{
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
                 return BottomNavigationBarController2(
-                    phone: phone, password: password);
+                    phone: phone, password: password,userID: userDetail[0].userId.toString());
               }));
         }
         // print("SUccess");

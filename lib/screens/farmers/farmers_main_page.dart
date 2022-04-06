@@ -11,7 +11,8 @@ import 'farmers_dashboard.dart';
 class BottomNavigationBarController2 extends StatefulWidget {
   final String phone;
   final String password;
-  BottomNavigationBarController2({Key? key,required this.phone,required this.password}) : super(key: key);
+  final String userID;
+  BottomNavigationBarController2({Key? key,required this.phone,required this.password,required this.userID}) : super(key: key);
 
   @override
   _BottomNavigationBarController2State createState() => _BottomNavigationBarController2State();

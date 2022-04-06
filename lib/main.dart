@@ -11,6 +11,7 @@ import 'CustomWidget/final_cart.dart';
 
 String? phone;
 String? password;
+String? userID;
 bool cartText=true;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,7 @@ void main() async{
   phone = preferences.getString('user_phone');
   // print(email);
   password = preferences.getString('user_password');
+  userID=preferences.getString('user_ID');
   runApp(MyApp());
 }
 
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: phone==null?Login():BottomNavigationBarController2(phone: phone!, password: password!),
+      home: phone==null?Login():BottomNavigationBarController2(phone: phone!, password: password!,userID: userID!),
 //    home: Login(),
     );
   }
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
 class BottomNavigationBarController extends StatefulWidget {
   final String phone;
   final String password;
-  BottomNavigationBarController({Key? key,required this.phone,required this.password}) : super(key: key);
+  final String userID;
+  BottomNavigationBarController({Key? key,required this.phone,required this.password,required this.userID}) : super(key: key);
 
   @override
   _BottomNavigationBarControllerState createState() => _BottomNavigationBarControllerState();

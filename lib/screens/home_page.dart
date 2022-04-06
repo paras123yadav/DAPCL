@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ngo/fruits.dart';
 import 'package:ngo/screens/search/searchPage.dart';
 import 'package:ngo/vegetables.dart';
 // ignore_for_file: prefer_const_constructors
@@ -291,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => VegetableListPage()),);
+                          MaterialPageRoute(builder: (context) => FruitListPage()),);
                     },
                   )),
                 ],
