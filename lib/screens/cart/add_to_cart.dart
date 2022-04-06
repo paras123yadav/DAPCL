@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ngo/screens/cart/empty_cart.dart';
 import '../../CustomWidget/final_cart.dart';
 
 bool lund = true;
 
 class CartPage extends StatefulWidget {
+  bool appVal;
   // String email,password;
-  // CartPage(this.email,this.password,{Key? key}) : super(key: key);
-
+   CartPage(this.appVal,{Key? key}) : super(key: key);
   @override
   State<CartPage> createState() => _CartPageState();
 }
@@ -37,7 +38,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          finalAppBar == true ? AppBar(backgroundColor: Colors.green) : null,
+          widget.appVal == true ? AppBar(backgroundColor: Colors.green) : null,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -119,6 +120,10 @@ class _CartPageState extends State<CartPage> {
             });
           });
         }
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EmptyCart()),
+        );
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -322,90 +327,93 @@ class _cartListState extends State<cartList> {
             color: Colors.grey.withOpacity(0.15)),
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
-          child: Column(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Column(
 
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.005,
-              ),
-              //    SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-              // Card(child: Image.asset("assets/"+image!,height: 90,
-              //   width: MediaQuery.of(context).size.width*0.28,)),
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: Text(vegname!,
-                      style: const TextStyle(
-                          fontSize: 22, overflow: TextOverflow.ellipsis))),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Row(
-                children: [
-                  Text(vegquantity!, style: TextStyle(fontSize: 18)),
-                  Text("@ Rs.$vegprices", style: TextStyle(fontSize: 18)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.005,
+                ),
+                //    SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                // Card(child: Image.asset("assets/"+image!,height: 90,
+                //   width: MediaQuery.of(context).size.width*0.28,)),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Text(vegname!,
+                        style: const TextStyle(
+                            fontSize: 22, overflow: TextOverflow.ellipsis))),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Row(
                   children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.7)
-                        ),
-                        child: InkWell(
-                            onTap: () {
-                              if (currData > 0) {
-                                setState(() {
-                                  currData -= 1;
-
-                                  if (currData == 0) {
-                                    int val = int.parse(vegprices!);
-                                    cart.remove("$vegname@$vegquantity@$vegprices");
-                                    ans.value -= val;
-                                  } else {
-                                    int val = int.parse(vegprices!);
-                                    cart["$vegname@$vegquantity@$vegprices"] =
-                                        currData;
-                                    ans.value -= val;
-                                  }
-                                  print(ans.value);
-                                  lund = true;
-                                });
-                              }
-                            },
-                            child: const Icon(Icons.remove))),
-                   SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                    Text(currData.toString(), style: TextStyle(fontSize: 16)),
-                    SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                    Container(
-                        decoration: BoxDecoration(border: Border.all(width: 0.7)),
-                        child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                int val = int.parse(vegprices!);
-                                ans.value += val;
-                                currData++;
-                                cart["$vegname@$vegquantity@$vegprices"] = currData;
-                                finalval = false;
-                                print(ans.value);
-                                lund = false;
-                              });
-                              // addtocart.forEach((key, value) {
-                              // });
-                            },
-                            child: const Icon(Icons.add))),
-
+                    Text(vegquantity!, style: TextStyle(fontSize: 18)),
+                    Text("@ Rs.$vegprices", style: TextStyle(fontSize: 18)),
                   ],
                 ),
-              ),
-              SizedBox(height: 12),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.09),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.3,
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      // Container(
+                      //     decoration: BoxDecoration(
+                      //         border: Border.all(width: 0.7)
+                      //     ),
+                      //     child: InkWell(
+                      //         onTap: () {
+                      //           if (currData > 0) {
+                      //             setState(() {
+                      //               currData -= 1;
+                      //
+                      //               if (currData == 0) {
+                      //                 int val = int.parse(vegprices!);
+                      //                 cart.remove("$vegname@$vegquantity@$vegprices");
+                      //                 ans.value -= val;
+                      //               } else {
+                      //                 int val = int.parse(vegprices!);
+                      //                 cart["$vegname@$vegquantity@$vegprices"] =
+                      //                     currData;
+                      //                 ans.value -= val;
+                      //               }
+                      //               print(ans.value);
+                      //               lund = true;
+                      //             });
+                      //           }
+                      //         },
+                      //         child: const Icon(Icons.remove))),
+                     SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                      Text("x "+currData.toString(),
+                          style: TextStyle(fontSize: 20)),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                      // Container(
+                      //     decoration: BoxDecoration(border: Border.all(width: 0.7)),
+                      //     child: InkWell(
+                      //         onTap: () {
+                      //           setState(() {
+                      //             int val = int.parse(vegprices!);
+                      //             ans.value += val;
+                      //             currData++;
+                      //             cart["$vegname@$vegquantity@$vegprices"] = currData;
+                      //             finalval = false;
+                      //             print(ans.value);
+                      //             lund = false;
+                      //           });
+                      //           // addtocart.forEach((key, value) {
+                      //           // });
+                      //         },
+                      //         child: const Icon(Icons.add))),
+
+                    ],
+                  ),
+                ),
+                SizedBox(height: 12),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.09),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
 //                     child: Row(
 //                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //                       children: [
@@ -467,8 +475,9 @@ class _cartListState extends State<cartList> {
 //
 //                       ],
 //                     ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

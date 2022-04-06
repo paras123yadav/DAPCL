@@ -64,7 +64,7 @@ class _DummyDataState extends State<DummyData> {
               finalAppBar=true;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CartPage()),
+                MaterialPageRoute(builder: (context) => CartPage(finalAppBar)),
               );
 
             });

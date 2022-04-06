@@ -110,7 +110,8 @@ print("jklj"+phone+password);
         //FarmersScreen2(phone: phone, password: password),
           HomeScreen(phone: phone,password: password),
           //EmptyCart(),
-           cart.isEmpty?EmptyCart():CartPage(),
+           cart.isNotEmpty?
+           CartPage(finalAppBar):EmptyCart(),
 //          ProfilePage(phone: phone,password: password,),
           HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
@@ -178,4 +179,9 @@ Widget customwallet(){
       ),
     );
 }
+Future<void> refresh() async{
+    setState(() {
+
+    });
+  }
 }

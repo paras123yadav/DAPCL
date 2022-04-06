@@ -90,7 +90,7 @@ class _VegetableListPageState extends State<VegetableListPage> {
               finalAppBar=true;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CartPage()),
+                MaterialPageRoute(builder: (context) => CartPage(finalAppBar)),
               );
 
             });

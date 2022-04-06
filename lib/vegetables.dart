@@ -80,22 +80,25 @@ class _VegetableListPageState extends State<VegetableListPage> {
     return InkWell(
       onTap: (){
         print(cart.isEmpty);
+        if(cart.isEmpty){
+          setState(() {
+            finalAppBar=false;
+          });
+        }
         cart.forEach((key, value) {
           print(key+" "+value.toString());
         });
         if(cart.isNotEmpty) {
-          setState(() {
             print(cart.values);
             setState(() {
               finalval=false;
               finalAppBar=true;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CartPage()),
+                MaterialPageRoute(builder: (context) => CartPage(finalAppBar)),
               );
 
             });
-          });
         }
       },
       child: ClipRRect(
@@ -132,7 +135,7 @@ class _VegetableListPageState extends State<VegetableListPage> {
       "cat_id": "61",
     };
     var response = await http
-        .post(Uri.parse(fruitList).replace(queryParameters: params));
+        .post(Uri.parse(vegetableList).replace(queryParameters: params));
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       var data = Product.fromJson(json);

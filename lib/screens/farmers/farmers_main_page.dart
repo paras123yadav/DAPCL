@@ -95,8 +95,8 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart),
-            label: "Add Product",
+            icon: Icon(Icons.add),
+            label: "Add",
           ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.track_changes),
