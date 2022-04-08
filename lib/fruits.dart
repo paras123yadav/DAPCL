@@ -9,6 +9,8 @@ import '../../api/constant.dart';
 import '../../models/Search.dart';
 import 'package:http/http.dart' as http;
 
+import 'main.dart';
+
 class FruitListPage extends StatefulWidget {
   FruitListPage( {Key? key}) : super(key: key);
 

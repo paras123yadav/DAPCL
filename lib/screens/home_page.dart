@@ -29,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.85,
@@ -39,9 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       right: MediaQuery.of(context).size.width * 0.02,
                     ),
                     child: TextFormField(
+
+                      textInputAction: TextInputAction.search,
                       controller: searchController,
                       cursorHeight: 24,
                       decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                         hintStyle: TextStyle(fontSize: 18),
                         hintText: "Search",
                         focusedBorder: OutlineInputBorder(
@@ -53,28 +58,46 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                         });
                       },
+                      onFieldSubmitted: (String? val){
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchPage(searchController.text)),
+                          );
+                        });
+                      },
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.search),
-                  color: Colors.black38,
-                  iconSize: 28,
-                  onPressed: (){
-                    if(searchController.text.isNotEmpty) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                SearchPage(searchController.text)),
-                      );
-                    }
-                    else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Please Enter the field")));
-                      //FetchData(searchController.text);
-                    }
-                  },
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height*0.015,
+                    ),
+                    IconButton(
+                      alignment: Alignment.center,
+                      icon: Icon(Icons.search),
+                      color: Colors.black38,
+                      iconSize: 33,
+                      onPressed: (){
+                        if(searchController.text.isNotEmpty) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchPage(searchController.text)),
+                          );
+                        }
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Please Enter the field")));
+                          //FetchData(searchController.text);
+                        }
+                      },
+                    ),
+                  ],
                 )
               ],
             ),

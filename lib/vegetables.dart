@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ngo/main.dart';
 import 'package:ngo/screens/cart/add_to_cart.dart';
 
 import '../../CustomWidget/final_cart.dart';
@@ -68,6 +69,9 @@ class _VegetableListPageState extends State<VegetableListPage> {
                       }
                   }),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.1,
+            )
           ],
         ),
       ),

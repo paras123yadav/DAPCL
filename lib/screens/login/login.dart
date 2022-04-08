@@ -282,14 +282,15 @@ class _LoginState extends State<Login> {
         });
         print("SUccess2");
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('user_email', emailController.text);
+        prefs.setString('user_phone', emailController.text);
         prefs.setString('user_password', passwordController.text);
         prefs.setString('user_ID', userDetail[0].userId.toString());
+        prefs.setString("user_type", userDetail[0].userType.toString());
         print(userDetail[0].userId.toString());
         if(userDetail[0].userType=="1") {
           Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
-          return BottomNavigationBarController(
+          return helper(
               phone: phone, password: password,userID: userDetail[0].userId.toString());
         }));
         }

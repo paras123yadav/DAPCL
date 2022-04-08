@@ -13,14 +13,17 @@ import 'CustomWidget/final_cart.dart';
 String? phone;
 String? password;
 String? userID;
+String? userType;
 bool cartText=true;
 void main() async{
+
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   phone = preferences.getString('user_phone');
   // print(email);
   password = preferences.getString('user_password');
   userID=preferences.getString('user_ID');
+  userType=preferences.getString('user_type');
   runApp(MyApp());
 }
 
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: phone==null?Login():BottomNavigationBarController2(phone: phone!, password: password!,userID: userID!),
+      home: phone==null?Login():(userType=="1"?helper(phone: phone!, password: password!, userID: userID!):(BottomNavigationBarController2(phone: phone!, password: password!,userID: userID!))),
 //    home: Login(),
     );
   }
@@ -43,14 +46,14 @@ class BottomNavigationBarController extends StatefulWidget {
   final String phone;
   final String password;
   final String userID;
-  BottomNavigationBarController({Key? key,required this.phone,required this.password,required this.userID}) : super(key: key);
+  late int indexes;
+  BottomNavigationBarController({Key? key,required this.phone,required this.password,required this.userID,required this.indexes}) : super(key: key);
 
   @override
   _BottomNavigationBarControllerState createState() => _BottomNavigationBarControllerState();
 }
 
 class _BottomNavigationBarControllerState extends State<BottomNavigationBarController> {
-  int _selectedPage = 0;
   List<Widget> pageList = [];
   String phone="sdssd",password="sdsdsd";
   @override
@@ -72,7 +75,7 @@ print("jklj"+phone+password);
       appBar: AppBar(
         title: const Center(child: Text("")),
         automaticallyImplyLeading: false,
-        // leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
+        //leading: const IconButton(onPressed: null, icon: Icon(Icons.account_circle),iconSize: 36),
         actions: [
           PopupMenuButton(
               elevation: 20,
@@ -109,7 +112,7 @@ print("jklj"+phone+password);
       // image pic + image name: quantity
       // ),
       body: IndexedStack(
-        index: _selectedPage,
+        index: widget.indexes,
         children: [
         //FarmersScreen2(phone: phone, password: password),
           HomeScreen(phone: phone,password: password),
@@ -142,16 +145,19 @@ print("jklj"+phone+password);
             label: 'Profile',
           ),
         ],
-        currentIndex: _selectedPage,
+        currentIndex: widget.indexes,
         selectedItemColor: Colors.green,
         onTap: _onItemTapped,
       ),
     );
   }
+
   void _onItemTapped(int index) {
     setState(() {
-      _selectedPage = index;
-      finalAppBar=false;
+      if(index==1){
+        Navigator.popAndPushNamed(context, 'home');}
+      else{widget.indexes=index;
+      finalAppBar=false;}
     });
   }
 Widget customwallet(){
@@ -190,3 +196,21 @@ Future<void> refresh() async{
     });
   }
 }
+
+
+class helper extends StatelessWidget {
+  final String phone,password,userID;
+  const helper({Key? key, required this.phone,required this.password,required this.userID}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      routes: {
+        "home": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 1),
+      },
+      home: BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 0),
+    );
+  }
+ }
+
