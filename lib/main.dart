@@ -154,12 +154,26 @@ print("jklj"+phone+password);
 
   void _onItemTapped(int index) {
     setState(() {
-      if(index==1){
-        Navigator.popAndPushNamed(context, 'home');
+      if(index==0){
+      Navigator.popAndPushNamed(context, 'home');
+      widget.indexes=index;
+      finalAppBar=false;
+    }
+      else if(index==1){
+        Navigator.popAndPushNamed(context, 'cart');
+        widget.indexes=index;
         finalAppBar=false;
       }
-      else{widget.indexes=index;
-      finalAppBar=false;}
+      else if(index==2){
+        Navigator.popAndPushNamed(context, 'track');
+        widget.indexes=index;
+        finalAppBar=false;
+      }
+      else if(index==3){
+        Navigator.popAndPushNamed(context, 'profile');
+        widget.indexes=index;
+        finalAppBar=false;
+      }
     });
   }
 Widget customwallet(){
@@ -209,7 +223,10 @@ class helper extends StatelessWidget {
 
     return MaterialApp(
       routes: {
-        "home": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 1),
+        "cart": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 1),
+        "home": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 0),
+        "track": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 2),
+        "profile": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 3),
       },
       home: BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 0),
     );
