@@ -37,6 +37,14 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      FarmersScreen2(phone: phone, password: password),
+      addProduct(),
+      ProfilePage(
+        phone: phone,
+        password: password,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("")),
@@ -77,17 +85,6 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
       //   backgroundColor: Colors.white,
       // image pic + image name: quantity
       // ),
-      body: IndexedStack(
-        index: _selectedPage,
-        children: [
-          FarmersScreen2(phone: phone, password: password),
-          //HomeScreen(phone: phone,password: password),
-          // cart.isEmpty?EmptyCart():CartPage(),
-          addProduct(),
-//          ProfilePage(phone: phone,password: password,),
-          ProfilePage(phone: phone,password: password,)
-        ],
-      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
@@ -110,16 +107,17 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
         ],
         currentIndex: _selectedPage,
         selectedItemColor: Colors.green,
-        onTap: _onItemTapped,
+        onTap: (index) {
+          setState(() {
+            _selectedPage = index;
+            finalAppBar=false;
+          });
+        },
       ),
+      body: _widgetOptions.elementAt(_selectedPage),
     );
   }
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedPage = index;
-      finalAppBar=false;
-    });
-  }
+
   Widget customwallet(){
     return InkWell(
       onTap: (){},
