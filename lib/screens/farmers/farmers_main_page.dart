@@ -39,7 +39,7 @@ class _BottomNavigationBarController2State extends State<BottomNavigationBarCont
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       FarmersScreen2(phone: phone, password: password),
-      addProduct(),
+      addProduct(userID: widget.userID,),
       ProfilePage(
         phone: phone,
         password: password,

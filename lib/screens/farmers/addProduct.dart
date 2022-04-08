@@ -1,9 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ngo/main.dart';
+import 'package:http/http.dart' as http;
+
+import '../../api/constant.dart';
 class addProduct extends StatefulWidget {
-  const addProduct({Key? key}) : super(key: key);
+  final String? userID;
+  addProduct({Key? key,required this.userID}) : super(key: key);
 
   @override
   State<addProduct> createState() => _addProductState();
@@ -300,46 +306,46 @@ class _addProductState extends State<addProduct> {
                     ),
                   ],
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("Add Variant Image",style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey.shade700,
-                      fontWeight: FontWeight.bold,
-                    ),),
-
-                    _profilePic2==null?IconButton(onPressed: (){
-                      takeMedia2();
-                    }, icon: Icon(Icons.camera_alt_rounded,size: 30,)):
-                    InkWell(
-                      onTap: (){
-                        takeMedia();
-                      },
-                      child: Container(
-                        width: 130,
-                        height: 130,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 4,
-                                color: Theme.of(context).scaffoldBackgroundColor),
-                            boxShadow: [
-                              BoxShadow(
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(0.1),
-                                  offset: Offset(0, 10))
-                            ],
-
-                            shape: BoxShape.rectangle,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: FileImage(_profilePic!))),
-                      ),
-                    ),
-                  ],
-                ),
+                // SizedBox(height: MediaQuery.of(context).size.height*0.02),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     Text("Add Variant Image",style: TextStyle(
+                //       fontSize: 18,
+                //       color: Colors.grey.shade700,
+                //       fontWeight: FontWeight.bold,
+                //     ),),
+                //
+                //     _profilePic2==null?IconButton(onPressed: (){
+                //       takeMedia2();
+                //     }, icon: Icon(Icons.camera_alt_rounded,size: 30,)):
+                //     InkWell(
+                //       onTap: (){
+                //         takeMedia();
+                //       },
+                //       child: Container(
+                //         width: 130,
+                //         height: 130,
+                //         decoration: BoxDecoration(
+                //             border: Border.all(
+                //                 width: 4,
+                //                 color: Theme.of(context).scaffoldBackgroundColor),
+                //             boxShadow: [
+                //               BoxShadow(
+                //                   spreadRadius: 2,
+                //                   blurRadius: 10,
+                //                   color: Colors.black.withOpacity(0.1),
+                //                   offset: Offset(0, 10))
+                //             ],
+                //
+                //             shape: BoxShape.rectangle,
+                //             image: DecorationImage(
+                //                 fit: BoxFit.cover,
+                //                 image: FileImage(_profilePic!))),
+                //       ),
+                //     ),
+                //   ],
+                // ),
 
                 // buildTextField("Description",0.8,productDescription),
                 SizedBox(
@@ -353,9 +359,8 @@ class _addProductState extends State<addProduct> {
 
                       onPressed: () async{
                         if (_formKey.currentState!.validate() && _profilePic!=null && Unit!=null && Unit2!=null){
+                          productAdded();
 //                          register(nameController.text, emailController.text,mobileController.text, passwordController.text);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Fuck u bitch")));
 
                         }
                         else{
@@ -433,6 +438,74 @@ class _addProductState extends State<addProduct> {
         ),
       ),
     );
+  }
+
+  Future<void> productAdded() async {
+    // var params={
+    //   "product_name":productName.text,
+    //   "quantity":productQuantity.text,
+    //   "unit":Unit,
+    //   "price":productMrp.text,
+    //   "store_id":"1",
+    //   "description":productDescription.text,
+    //   "mrp":productMrp.text,
+    //   "user_id":userID,
+    // };
+    print(_profilePic!.path);
+    var response;
+    if(Unit2=="Fruits"){
+      var request = http.MultipartRequest("POST",Uri.parse(addFruit));
+      request.files.add(await http.MultipartFile.fromPath(
+             "product_image",_profilePic!.path));
+      request.fields["product_name"] = productName.text;
+      request.fields["quantity"] = productQuantity.text;
+      request.fields["unit"] = Unit!;
+      request.fields["price"] = productMrp.text;
+      request.fields["store_id"] = "1";
+      request.fields["description"] = productDescription.text;
+      request.fields["mrp"] = productMrp.text;
+      request.fields["user_id"] = userID!;
+
+      response = await request.send();
+
+    }
+    else
+    {
+      var request = http.MultipartRequest("POST",Uri.parse(addVegetable));
+      request.files.add(await http.MultipartFile.fromPath(
+          "product_image",_profilePic!.path));
+      request.fields["product_name"] = productName.text;
+      request.fields["quantity"] = productQuantity.text;
+      request.fields["unit"] = Unit!;
+      request.fields["price"] = productMrp.text;
+      request.fields["store_id"] = "1";
+      request.fields["description"] = productDescription.text;
+      request.fields["mrp"] = productMrp.text;
+      request.fields["user_id"] = userID!;
+
+      response = await request.send();
+    }
+    if(response.statusCode==200)
+    {
+    //   print(response.toString());
+    //   //var json=jsonDecode(response.body);
+    // print(json["status"]);
+    // print(userID);
+    // if(json["status"]=="0") {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Product Successfully Added")));
+//    }
+    if(1==0)
+    {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("User Already Registered !!")));
+
+    }
+    }
+    else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please Try After Some Time !!")));
+    }
   }
 }
 
