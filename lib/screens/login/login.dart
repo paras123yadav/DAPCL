@@ -290,7 +290,7 @@ class _LoginState extends State<Login> {
         if(userDetail[0].userType=="1") {
           Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
-          return helper(
+          return BottomNavigationBarController(
               phone: phone, password: password,userID: userDetail[0].userId.toString());
         }));
         }

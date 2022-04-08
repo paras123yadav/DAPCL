@@ -14,16 +14,15 @@ String? phone;
 String? password;
 String? userID;
 String? userType;
-bool cartText=true;
-void main() async{
-
+bool cartText = true;
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   phone = preferences.getString('user_phone');
   // print(email);
   password = preferences.getString('user_password');
-  userID=preferences.getString('user_ID');
-  userType=preferences.getString('user_type');
+  userID = preferences.getString('user_ID');
+  userType = preferences.getString('user_type');
   runApp(MyApp());
 }
 
@@ -37,40 +36,62 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: phone==null?Login():(userType=="1"?helper(phone: phone!, password: password!, userID: userID!):(BottomNavigationBarController2(phone: phone!, password: password!,userID: userID!))),
+      home: phone == null
+          ? Login()
+          : (userType == "1"
+              ? BottomNavigationBarController(phone: phone!, password: password!, userID: userID!)
+              : (BottomNavigationBarController2(
+                  phone: phone!, password: password!, userID: userID!))),
 //    home: Login(),
     );
   }
 }
+
 class BottomNavigationBarController extends StatefulWidget {
   final String phone;
   final String password;
   final String userID;
-  late int indexes;
-  BottomNavigationBarController({Key? key,required this.phone,required this.password,required this.userID,required this.indexes}) : super(key: key);
+  BottomNavigationBarController(
+      {Key? key,
+      required this.phone,
+      required this.password,
+      required this.userID})
+      : super(key: key);
 
   @override
-  _BottomNavigationBarControllerState createState() => _BottomNavigationBarControllerState();
+  _BottomNavigationBarControllerState createState() =>
+      _BottomNavigationBarControllerState();
 }
 
-class _BottomNavigationBarControllerState extends State<BottomNavigationBarController> {
+class _BottomNavigationBarControllerState
+    extends State<BottomNavigationBarController> {
   List<Widget> pageList = [];
-  String phone="sdssd",password="sdsdsd";
+  String phone = "sdssd", password = "sdsdsd";
+  int _selectedindex = 0;
+
   @override
   void initState() {
     super.initState();
-    phone=widget.phone;
-    password=widget.password;
+    phone = widget.phone;
+    password = widget.password;
     // pageList.add(const HomeScreen());
     // pageList.add( ProfilePage(phone: phone,password: password,));
     // pageList.add(const HomeScreen());
     // pageList.add( ProfilePage(phone: phone,password: password,));
-print("jklj"+phone+password);
-
+    print("jklj" + phone + password);
   }
 
   @override
   Widget build(BuildContext context) {
+      List<Widget> _widgetOptions = <Widget>[
+      HomeScreen(phone: phone, password: password),
+      cart.isNotEmpty ? CartPage(finalAppBar) : EmptyCart(),
+      TrackPage(),
+      ProfilePage(
+        phone: phone,
+        password: password,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("")),
@@ -81,23 +102,21 @@ print("jklj"+phone+password);
               elevation: 20,
               enabled: true,
               onSelected: (value) async {
-                SharedPreferences preferences = await SharedPreferences.getInstance();
+                SharedPreferences preferences =
+                    await SharedPreferences.getInstance();
                 await preferences.clear();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Login()),
                 );
-
               },
-              itemBuilder:(context) =>  [
-                PopupMenuItem(
-                  onTap: (){
-                  },
-                  child: const Text("Logout"),
-                  value: "Logout",
-                ),
-              ]
-          )
+              itemBuilder: (context) => [
+                    PopupMenuItem(
+                      onTap: () {},
+                      child: const Text("Logout"),
+                      value: "Logout",
+                    ),
+                  ])
           //          customwallet(),
         ],
         backgroundColor: Colors.green,
@@ -111,20 +130,20 @@ print("jklj"+phone+password);
       //   backgroundColor: Colors.white,
       // image pic + image name: quantity
       // ),
-      body: IndexedStack(
-        index: widget.indexes,
-        children: [
-        //FarmersScreen2(phone: phone, password: password),
-          HomeScreen(phone: phone,password: password),
-          //EmptyCart(),
-           cart.isNotEmpty?
-           CartPage(finalAppBar):EmptyCart(),
-//          ProfilePage(phone: phone,password: password,),
-            TrackPage(),
-          // HomeScreen(phone: phone,password: password,),
-          ProfilePage(phone: phone,password: password,)
-        ],
-      ),
+//       body: IndexedStack(
+//         index: _selectedindex,
+//         children: [
+//         //FarmersScreen2(phone: phone, password: password),
+//           HomeScreen(phone: phone,password: password),
+//           //EmptyCart(),
+//            cart.isNotEmpty?
+//            CartPage(finalAppBar):EmptyCart(),
+// //          ProfilePage(phone: phone,password: password,),
+//             TrackPage(),
+//           // HomeScreen(phone: phone,password: password,),
+//           ProfilePage(phone: phone,password: password,)
+//         ],
+//       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
@@ -145,54 +164,35 @@ print("jklj"+phone+password);
             label: 'Profile',
           ),
         ],
-        currentIndex: widget.indexes,
+        currentIndex: _selectedindex,
         selectedItemColor: Colors.green,
-        onTap: _onItemTapped,
+        onTap: (index) {
+          setState(() {
+            _selectedindex = index;
+            finalAppBar=false;
+          });
+        },
       ),
+      body: _widgetOptions.elementAt(_selectedindex),
     );
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      if(index==0){
-      Navigator.popAndPushNamed(context, 'home');
-      widget.indexes=index;
-      finalAppBar=false;
-    }
-      else if(index==1){
-        Navigator.popAndPushNamed(context, 'cart');
-        widget.indexes=index;
-        finalAppBar=false;
-      }
-      else if(index==2){
-        Navigator.popAndPushNamed(context, 'track');
-        widget.indexes=index;
-        finalAppBar=false;
-      }
-      else if(index==3){
-        Navigator.popAndPushNamed(context, 'profile');
-        widget.indexes=index;
-        finalAppBar=false;
-      }
-    });
-  }
-Widget customwallet(){
+
+  Widget customwallet() {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(5),
-          side: const BorderSide(
-            width: 1,
-            color: Colors.grey
-          )
-        ),
+            borderRadius: BorderRadiusDirectional.circular(5),
+            side: const BorderSide(width: 1, color: Colors.grey)),
         child: Padding(
-          padding: const EdgeInsets.only(left: 4.0,right: 4),
+          padding: const EdgeInsets.only(left: 4.0, right: 4),
           child: Row(
             children: [
-              Icon(Icons.account_balance_wallet,color: Colors.black38),
-              SizedBox(width: 10,),
+              Icon(Icons.account_balance_wallet, color: Colors.black38),
+              SizedBox(
+                width: 10,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -205,31 +205,10 @@ Widget customwallet(){
         ),
       ),
     );
-}
-Future<void> refresh() async{
-    setState(() {
+  }
 
-    });
+  Future<void> refresh() async {
+    setState(() {});
   }
 }
-
-
-class helper extends StatelessWidget {
-  final String phone,password,userID;
-  const helper({Key? key, required this.phone,required this.password,required this.userID}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-
-    return MaterialApp(
-      routes: {
-        "cart": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 1),
-        "home": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 0),
-        "track": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 2),
-        "profile": (context)=>BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 3),
-      },
-      home: BottomNavigationBarController(phone: phone, password: password, userID: userID,indexes: 0),
-    );
-  }
- }
 
