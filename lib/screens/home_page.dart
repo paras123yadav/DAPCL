@@ -11,7 +11,8 @@ import '../models/Search.dart';
 import 'dummy data/dummydata.dart';
 class HomeScreen extends StatefulWidget {
   final String phone, password;
-  const HomeScreen({Key? key, required this.phone, required this.password})
+  final String userID;
+  const HomeScreen({Key? key, required this.userID, required this.phone, required this.password})
       : super(key: key);
 
   @override
@@ -178,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => VegetableListPage()),
+                        MaterialPageRoute(builder: (context) => VegetableListPage(userID: widget.userID,)),
                       );
                     },
                   )),
@@ -216,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => FruitListPage()),);
+                            MaterialPageRoute(builder: (context) => FruitListPage(userID: widget.userID,)),);
                         },
                       )),
                 ],
@@ -306,19 +307,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         )),
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'We are working on this page.',
-                            style: GoogleFonts.nunito(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          backgroundColor: Colors.pinkAccent,
-                        ),
-                      );
                     },
                   )),
                 ],

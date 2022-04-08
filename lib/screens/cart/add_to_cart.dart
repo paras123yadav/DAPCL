@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ngo/screens/cart/empty_cart.dart';
 import '../../CustomWidget/final_cart.dart';
 
-bool lund = true;
+bool check = true;
 
 class CartPage extends StatefulWidget {
   bool appVal;
+  final String userID;
   // String email,password;
-   CartPage(this.appVal,{Key? key}) : super(key: key);
+   CartPage(this.appVal,{Key? key,required this.userID}) : super(key: key);
   @override
   State<CartPage> createState() => _CartPageState();
 }
@@ -230,7 +231,7 @@ class _CartPageState extends State<CartPage> {
                                     ans.value -= val;
                                   }
                                   print(ans.value);
-                                  lund = true;
+                                  check = true;
                                 });
                               }
                             },
@@ -251,7 +252,7 @@ class _CartPageState extends State<CartPage> {
                                     items;
                                 finalval = false;
                                 print(ans.value);
-                                lund = false;
+                                check = false;
                               });
                               // addtocart.forEach((key, value) {
                               // });
@@ -380,7 +381,7 @@ class _cartListState extends State<cartList> {
                       //                 ans.value -= val;
                       //               }
                       //               print(ans.value);
-                      //               lund = true;
+                      //               check = true;
                       //             });
                       //           }
                       //         },
@@ -400,7 +401,7 @@ class _cartListState extends State<cartList> {
                       //             cart["$vegname@$vegquantity@$vegprices"] = currData;
                       //             finalval = false;
                       //             print(ans.value);
-                      //             lund = false;
+                      //             check = false;
                       //           });
                       //           // addtocart.forEach((key, value) {
                       //           // });
@@ -441,7 +442,7 @@ class _cartListState extends State<cartList> {
 //                                         ans.value-=val;
 //                                       }
 //                                       print(ans.value);
-//                                       lund=true;
+//                                       check=true;
 //                                     });
 //                                   }
 //                                 },
@@ -464,7 +465,7 @@ class _cartListState extends State<cartList> {
 //                                     cart["$vegname@$vegquantity@$vegprices"]=currData;
 //                                     finalval=false;
 //                                     print(ans.value);
-//                                     lund=false;
+//                                     check=false;
 //                                   });
 //                                   // addtocart.forEach((key, value) {
 //                                   // });

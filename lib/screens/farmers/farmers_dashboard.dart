@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ngo/main.dart';
 import 'package:ngo/screens/farmers/productsAdded.dart';
+import 'package:ngo/screens/farmers/sellerSearch.dart';
 import 'package:ngo/screens/search/searchPage.dart';
 import 'package:ngo/screens/wallet/wallet_page.dart';
 import '../../api/constant.dart';
 import '../../models/Search.dart';
 import '../dummy data/dummydata.dart';
 class FarmersScreen2 extends StatefulWidget {
-  final String phone, password;
-  const FarmersScreen2({Key? key, required this.phone, required this.password})
+  final String phone, password,userID;
+  const FarmersScreen2({Key? key, required this.phone, required this.password,required this.userID})
       : super(key: key);
 
   @override
@@ -61,7 +63,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    SearchPage(searchController.text)),
+                                    SellerSearchPage(searchController.text,widget.userID)),
                           );
                         });
                       },
@@ -84,7 +86,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    SearchPage(searchController.text)),
+                                    SellerSearchPage(searchController.text,widget.userID)),
                           );
                         }
                         else {
@@ -161,7 +163,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => AddedProducts()),
+                            MaterialPageRoute(builder: (context) => AddedProducts(UserID: widget.userID)),
                           );
                         },
                       )),
@@ -219,20 +221,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                   ),
                                 ))),
                         onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'We are working on this page.',
-                                style: GoogleFonts.nunito(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                    fontSize: 22
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              backgroundColor: Colors.pinkAccent,
-                            ),
-                          );
+
                         },
                       )),
                   Expanded(
@@ -259,7 +248,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                         onTap: (){
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return const WalletScreen();
+                                return WalletScreen(widget.userID);
                               }));
                         },
                       )),

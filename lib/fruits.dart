@@ -12,7 +12,8 @@ import 'package:http/http.dart' as http;
 import 'main.dart';
 
 class FruitListPage extends StatefulWidget {
-  FruitListPage( {Key? key}) : super(key: key);
+  final String userID;
+  FruitListPage({Key? key, required this.userID}) : super(key: key);
 
   @override
   State<FruitListPage> createState() => _FruitListPageState();
@@ -68,7 +69,11 @@ class _FruitListPageState extends State<FruitListPage> {
                       return SizedBox();
                     }
                   }),
+
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.1,
+            )
           ],
         ),
       ),
@@ -92,7 +97,7 @@ class _FruitListPageState extends State<FruitListPage> {
               finalAppBar=true;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CartPage(finalAppBar)),
+                MaterialPageRoute(builder: (context) => CartPage(finalAppBar,userID: widget.userID,)),
               );
 
             });
@@ -129,11 +134,9 @@ class _FruitListPageState extends State<FruitListPage> {
   }
 
   FetchData() async {
-    var params = {
-      "cat_id": "61",
-    };
+
     var response = await http
-        .post(Uri.parse(fruitList).replace(queryParameters: params));
+        .post(Uri.parse(fruitList));
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       var data = Product.fromJson(json);

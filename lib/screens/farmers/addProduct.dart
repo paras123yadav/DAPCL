@@ -464,7 +464,7 @@ class _addProductState extends State<addProduct> {
       request.fields["store_id"] = "1";
       request.fields["description"] = productDescription.text;
       request.fields["mrp"] = productMrp.text;
-      request.fields["user_id"] = userID!;
+      request.fields["user_id"] = widget.userID!;
 
       response = await request.send();
 
@@ -481,7 +481,7 @@ class _addProductState extends State<addProduct> {
       request.fields["store_id"] = "1";
       request.fields["description"] = productDescription.text;
       request.fields["mrp"] = productMrp.text;
-      request.fields["user_id"] = userID!;
+      request.fields["user_id"] = widget.userID!;
 
       response = await request.send();
     }

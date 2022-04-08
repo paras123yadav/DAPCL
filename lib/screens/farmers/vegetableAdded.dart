@@ -10,15 +10,15 @@ import '../../api/constant.dart';
 import '../../models/Search.dart';
 import 'package:http/http.dart' as http;
 
-class VegetableListPage extends StatefulWidget {
+class VegetableAdded extends StatefulWidget {
   final String userID;
-  VegetableListPage( {Key? key,required this.userID}) : super(key: key);
+  VegetableAdded( {Key? key,required this.userID}) : super(key: key);
 
   @override
-  State<VegetableListPage> createState() => _VegetableListPageState();
+  State<VegetableAdded> createState() => _VegetableAddedState();
 }
 
-class _VegetableListPageState extends State<VegetableListPage> {
+class _VegetableAddedState extends State<VegetableAdded> {
   List<ProductDetails> productDetails = [];
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _VegetableListPageState extends State<VegetableListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fresh Veggies"),
+        title: Text("Added Vegetables"),
         backgroundColor: Colors.green,
 
       ),
@@ -46,28 +46,23 @@ class _VegetableListPageState extends State<VegetableListPage> {
                     if(productDetails[index].varients.isEmpty){
                       return SizedBox();
                     }else
-                      {
-                        int j=index;
-                        int i=productDetails[index].varients.length;
-                    while(i-->=0){
+                    {
+                      int j=index;
+                      int i=productDetails[index].varients.length;
+                      while(i-->=0){
 
-                    return Dummy2(
-                      productDetails[index].productImage.toString(),
-                      productDetails[j].productName.toString(),
-                      "@" +
-                          productDetails[j]
-                              .varients[i]
-                              .quantity
-                              .toString() +
-                          productDetails[j].varients[i].unit.toString() +
-                          " @ " +
+                        return Dummy2(
+                          productDetails[index].productImage.toString(),
+                          productDetails[j].productName.toString(),
                           productDetails[j].varients[i].price.toString(),
-                      // vegprice[index],
-                      //cart,index,items
-                    );
-                    }
-                    return SizedBox();
+                          productDetails[j].varients[i].quantity.toString() +
+                              productDetails[j].varients[i].unit.toString(),
+                          // vegprice[index],
+                          //cart,index,items
+                        );
                       }
+                      return SizedBox();
+                    }
                   }),
             ),
             SizedBox(
@@ -76,69 +71,16 @@ class _VegetableListPageState extends State<VegetableListPage> {
           ],
         ),
       ),
-      floatingActionButton: customCartButton(),
     );
   }
 
-
-  Widget customCartButton(){
-    return InkWell(
-      onTap: (){
-        print(cart.isEmpty);
-        if(cart.isEmpty){
-          setState(() {
-            finalAppBar=false;
-          });
-        }
-        cart.forEach((key, value) {
-          print(key+" "+value.toString());
-        });
-        if(cart.isNotEmpty) {
-            print(cart.values);
-            setState(() {
-              finalval=false;
-              finalAppBar=true;
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CartPage(finalAppBar,userID: widget.userID,)),
-              );
-
-            });
-        }
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          height: 60,
-          width: MediaQuery.of(context).size.width*0.46,
-          decoration: BoxDecoration(
-              color: Colors.lightGreen[800]
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(Icons.shopping_bag,size: 36,color: Colors.white),
-              custom()
-            ],
-          ),
-        ),
-      ),
-    );
-
-  }
-  Widget custom(){
-    return Row(
-      children: const [
-        Text("Go to Cart",style: TextStyle(fontSize: 20,color: Colors.white)),
-        Icon(Icons.arrow_forward_ios_sharp,color: Colors.white),
-      ],
-    );
-  }
 
   FetchData() async {
-
+    var params = {
+      "user_id": widget.userID,
+    };
     var response = await http
-        .post(Uri.parse(vegetableList));
+        .get(Uri.parse(vegetableList).replace(queryParameters: params));
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       var data = Product.fromJson(json);
@@ -166,11 +108,11 @@ class _VegetableListPageState extends State<VegetableListPage> {
 
 class Dummy2 extends StatefulWidget {
   String imag;
-  String vegnam, vegprice;
+  String vegnam, vegprice,vegquantity;
   //,vegprice;
   //int currIdx,items;
 //  Map<String, int> cart;
-  Dummy2(this.imag,this.vegnam, this.vegprice, {Key? key}) : super(key: key);
+  Dummy2(this.imag,this.vegnam, this.vegprice, this.vegquantity,{Key? key}) : super(key: key);
 
   @override
   State<Dummy2> createState() => _Dummy2State();
@@ -184,7 +126,7 @@ class _Dummy2State extends State<Dummy2> {
   void initState() {
     int? x;
     super.initState();
-   image=widget.imag;
+    image=widget.imag;
     vegname = widget.vegnam;
     vegprices = widget.vegprice;
     // addtocart=widget.cart;
@@ -239,57 +181,20 @@ class _Dummy2State extends State<Dummy2> {
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: Text(vegname,
                                   style: const TextStyle(
-                                      fontSize: 16, overflow: TextOverflow.ellipsis)),
+                                      fontSize: 22, overflow: TextOverflow.ellipsis)),
                             ),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.005,
                             ),
-                            Text(vegprices.substring(1),
-                                style: TextStyle(fontSize: 16)),
+                            Text("Rs. "+vegprices,
+                                style: TextStyle(fontSize: 18)),
                             SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Container(
-                                      decoration:
-                                      BoxDecoration(border: Border.all(width: 0.5)),
-                                      child: InkWell(
-                                          onTap: () {
-                                            if (currData > 0) {
-                                              setState(() {
-                                                finalval=true;
-                                                currData -= 1;
-                                                if (currData == 0) {
-                                                  cart.remove(vegname + vegprices);
-                                                } else {
-                                                  cart[vegname + vegprices] = currData;
-                                                }
-                                              });
-                                            }
-                                            print(cart.values);
-                                          },
-                                          child: const Icon(Icons.remove))),
-//                  SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                                  Text(currData.toString(),
-                                      style: TextStyle(fontSize: 16)),
-                                  //                SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                                  Container(
-                                      decoration:
-                                      BoxDecoration(border: Border.all(width: 0.5)),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              finalval=true;
-                                              currData++;
-                                              cart[vegname + vegprices] = currData;
-                                            });
-                                            print(cart.values);
-                                            // cart.forEach((key, value) {
-                                            // });
-                                          },
-                                          child: const Icon(Icons.add))),
+                                  Text("x"+widget.vegquantity,style: TextStyle(fontSize: 20)),
                                 ],
                               ),
                             )

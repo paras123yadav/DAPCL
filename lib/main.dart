@@ -84,9 +84,9 @@ class _BottomNavigationBarControllerState
   @override
   Widget build(BuildContext context) {
       List<Widget> _widgetOptions = <Widget>[
-      HomeScreen(phone: phone, password: password),
-      cart.isNotEmpty ? CartPage(finalAppBar) : EmptyCart(),
-      TrackPage(),
+      HomeScreen(phone: phone, password: password,userID: widget.userID,),
+      cart.isNotEmpty ? CartPage(finalAppBar,userID: widget.userID) : EmptyCart(),
+      TrackPage(userID: widget.userID,),
       ProfilePage(
         phone: phone,
         password: password,

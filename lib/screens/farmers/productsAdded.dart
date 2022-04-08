@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ngo/main.dart';
+import 'package:ngo/screens/farmers/fruitAdded.dart';
+import 'package:ngo/screens/farmers/vegetableAdded.dart';
 
 class AddedProducts extends StatefulWidget {
-  const AddedProducts({Key? key}) : super(key: key);
+  final String UserID;
+  const AddedProducts({Key? key,required this.UserID}) : super(key: key);
 
   @override
   State<AddedProducts> createState() => _AddedProductsState();
@@ -22,7 +26,10 @@ class _AddedProductsState extends State<AddedProducts> {
           Center(
             child: InkWell(
               onTap: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FruitAdded(userID: widget.UserID)),
+                );
               },
               child: Container(
                 alignment: Alignment.center,
@@ -46,7 +53,10 @@ class _AddedProductsState extends State<AddedProducts> {
           Center(
             child: InkWell(
               onTap: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VegetableAdded(userID: widget.UserID)),
+                );
               },
               child: Container(
                 alignment: Alignment.center,

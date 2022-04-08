@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatefulWidget {
-  const WalletScreen({Key? key}) : super(key: key);
+  final String userID;
+  const WalletScreen(this.userID,{Key? key}) : super(key: key);
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();

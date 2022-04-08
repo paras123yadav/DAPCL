@@ -72,7 +72,7 @@ class Varient {
     required this.unit,
     required this.mrp,
     required this.price,
-    required this.description,
+    this.description,
     required this.varientImage,
   });
 
@@ -82,7 +82,7 @@ class Varient {
   String unit;
   int mrp;
   int price;
-  String description;
+  String? description;
   String varientImage;
 
   factory Varient.fromJson(Map<String, dynamic> json) => Varient(
