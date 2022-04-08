@@ -26,6 +26,8 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.85,
@@ -36,9 +38,12 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                       right: MediaQuery.of(context).size.width * 0.02,
                     ),
                     child: TextFormField(
+
+                      textInputAction: TextInputAction.search,
                       controller: searchController,
                       cursorHeight: 24,
                       decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                         hintStyle: TextStyle(fontSize: 18),
                         hintText: "Search",
                         focusedBorder: OutlineInputBorder(
@@ -50,27 +55,46 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                         setState(() {
                         });
                       },
+                      onFieldSubmitted: (String? val){
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchPage(searchController.text)),
+                          );
+                        });
+                      },
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.search),
-                  color: Colors.black38,
-                  onPressed: (){
-                    if(searchController.text.isNotEmpty) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                SearchPage(searchController.text)),
-                      );
-                    }
-                    else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Please Enter the field")));
-                      //FetchData(searchController.text);
-                    }
-                  },
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height*0.015,
+                    ),
+                    IconButton(
+                      alignment: Alignment.center,
+                      icon: Icon(Icons.search),
+                      color: Colors.black38,
+                      iconSize: 33,
+                      onPressed: (){
+                        if(searchController.text.isNotEmpty) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchPage(searchController.text)),
+                          );
+                        }
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Please Enter the field")));
+                          //FetchData(searchController.text);
+                        }
+                      },
+                    ),
+                  ],
                 )
               ],
             ),
@@ -108,7 +132,7 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(),
               child: Row(
                 children: [
                   Expanded(
@@ -168,9 +192,9 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 7),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(),
               child: Row(
                 children: [
                   Expanded(

@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(),
               child: Row(
                 children: [
                   Expanded(
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             )),
                             const SizedBox(
-                              height: 10,
+                              height: 7,
                             ),
                             FittedBox(
                               child: SizedBox(
@@ -205,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     )),
                                 const SizedBox(
-                                  height: 10,
+                                  height: 7,
                                 ),
                                 Text(
                                   "Delicious",
@@ -222,9 +222,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 7),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(),
               child: Row(
                 children: [
 
@@ -251,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     )),
                                 const SizedBox(
-                                  height: 10,
+                                  height: 7,
                                 ),
                                 FittedBox(
                                   child: SizedBox(
@@ -291,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             )),
                             const SizedBox(
-                              height: 10,
+                              height: 7,
                             ),
                             Center(
                               child: SizedBox(
