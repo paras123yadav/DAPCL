@@ -155,7 +155,9 @@ print("jklj"+phone+password);
   void _onItemTapped(int index) {
     setState(() {
       if(index==1){
-        Navigator.popAndPushNamed(context, 'home');}
+        Navigator.popAndPushNamed(context, 'home');
+        finalAppBar=false;
+      }
       else{widget.indexes=index;
       finalAppBar=false;}
     });
