@@ -494,6 +494,14 @@ class _addProductState extends State<addProduct> {
     // if(json["status"]=="0") {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Product Successfully Added")));
+      setState(() {
+       productName.text="";
+       productQuantity.text="";
+       productUnit.text="";
+       productMrp.text="";
+       productDescription.text="";
+       _profilePic=null;
+      });
 //    }
     if(1==0)
     {
