@@ -6,6 +6,7 @@ import 'package:ngo/screens/farmers/farmers_main_page.dart';
 import 'package:ngo/screens/home_page.dart';
 import 'package:ngo/screens/login/login.dart';
 import 'package:ngo/screens/profile_page.dart';
+import 'package:ngo/screens/track/tracking_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'CustomWidget/final_cart.dart';
 
@@ -116,7 +117,8 @@ print("jklj"+phone+password);
            cart.isNotEmpty?
            CartPage(finalAppBar):EmptyCart(),
 //          ProfilePage(phone: phone,password: password,),
-          HomeScreen(phone: phone,password: password,),
+            TrackPage(),
+          // HomeScreen(phone: phone,password: password,),
           ProfilePage(phone: phone,password: password,)
         ],
       ),

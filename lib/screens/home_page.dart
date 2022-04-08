@@ -59,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 IconButton(
                   icon: Icon(Icons.search),
                   color: Colors.black38,
+                  iconSize: 28,
                   onPressed: (){
                     if(searchController.text.isNotEmpty) {
                       Navigator.push(
@@ -160,43 +161,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
                   Expanded(
                       child: InkWell(
-                    child: Container(
-                        margin: const EdgeInsets.all(7.5),
-                        height: 170,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.grey.withOpacity(0.15)),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/sessional_veg.jpg",
-                              height: 100,
-                            ),
-                            Center(
-                                child: Text(
-                              "Seasonal Veggies",
-                              style: GoogleFonts.nunito(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            FittedBox(
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width*0.3,
-                                child: Text(
-                                  "Freshly Hand Picked",
-                                  style: GoogleFonts.nunito(),
-                                  textAlign: TextAlign.center,
+                        child: Container(
+                            margin: const EdgeInsets.all(7.5),
+                            height: 170,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey.withOpacity(0.15)),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/fresh_fruits.jpg",
+                                  height: 100,
                                 ),
-                              ),
-                            )
-                          ],
-                        )),
-                    onTap: () {},
-                  )),
+                                Center(
+                                    child: Text(
+                                      "Fresh Fruits",
+                                      style: GoogleFonts.nunito(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Delicious",
+                                  style: GoogleFonts.nunito(),
+                                )
+                              ],
+                            )),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FruitListPage()),);
+                        },
+                      )),
                 ],
               ),
             ),
@@ -205,6 +204,47 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(left: 8.0),
               child: Row(
                 children: [
+
+                  Expanded(
+                      child: InkWell(
+                        child: Container(
+                            margin: const EdgeInsets.all(7.5),
+                            height: 170,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey.withOpacity(0.15)),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/sessional_veg.jpg",
+                                  height: 100,
+                                ),
+                                Center(
+                                    child: Text(
+                                      "Seasonal Veggies",
+                                      style: GoogleFonts.nunito(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                FittedBox(
+                                  child: SizedBox(
+                                    width: MediaQuery.of(context).size.width*0.3,
+                                    child: Text(
+                                      "Freshly Hand Picked",
+                                      style: GoogleFonts.nunito(),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )),
+                        onTap: () {},
+                      )),
+
                   Expanded(
                       child: InkWell(
                     child: Container(
@@ -222,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Center(
                                 child: Text(
-                              "Hydroponics",
+                              "Others",
                               style: GoogleFonts.nunito(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -234,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width*0.3,
                                 child: Text(
-                                  "Exotic Fruits and Vegetables",
+                                  "",
                                   style: GoogleFonts.nunito(),
                                   textAlign: TextAlign.center,
                                 ),
@@ -256,43 +296,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           backgroundColor: Colors.pinkAccent,
                         ),
                       );
-                    },
-                  )),
-                  Expanded(
-                      child: InkWell(
-                    child: Container(
-                        margin: const EdgeInsets.all(7.5),
-                        height: 170,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.grey.withOpacity(0.15)),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/fresh_fruits.jpg",
-                              height: 100,
-                            ),
-                            Center(
-                                child: Text(
-                              "Fresh Fruits",
-                              style: GoogleFonts.nunito(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Delicious",
-                              style: GoogleFonts.nunito(),
-                            )
-                          ],
-                        )),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => FruitListPage()),);
                     },
                   )),
                 ],
