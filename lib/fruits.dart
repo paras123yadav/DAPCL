@@ -1,14 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ngo/screens/cart/add_to_cart.dart';
-
 import '../../CustomWidget/final_cart.dart';
 import '../../api/constant.dart';
 import '../../models/Search.dart';
 import 'package:http/http.dart' as http;
-
 import 'main.dart';
 
 class FruitListPage extends StatefulWidget {
@@ -297,5 +294,9 @@ class _Dummy2State extends State<Dummy2> {
             ),
           ),
         ]);
+  }
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

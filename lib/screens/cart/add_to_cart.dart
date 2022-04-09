@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ngo/screens/cart/empty_cart.dart';
+import 'package:ngo/screens/payments/card_details.dart';
+import 'package:ngo/screens/payments/payment_dashboard.dart';
 import '../../CustomWidget/final_cart.dart';
 
 bool check = true;
@@ -123,7 +125,7 @@ class _CartPageState extends State<CartPage> {
         }
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EmptyCart()),
+          MaterialPageRoute(builder: (context) => PaymentDashboard(UserID: widget.userID,)),
         );
       },
       child: ClipRRect(

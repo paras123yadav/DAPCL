@@ -45,6 +45,7 @@ class _WalletScreenState extends State<WalletScreen> {
             width: MediaQuery.of(context).size.width*0.4,
             child: RaisedButton(
               onPressed: (){
+
               },
               color: Colors.green,
               shape: RoundedRectangleBorder(
