@@ -16,6 +16,7 @@ class _AddedProductsState extends State<AddedProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Products Added"),
         backgroundColor: Colors.green,
       ),
       body: Column(

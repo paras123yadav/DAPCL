@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ngo/main.dart';
 import 'package:ngo/screens/farmers/productsAdded.dart';
 import 'package:ngo/screens/farmers/sellerSearch.dart';
+import 'package:ngo/screens/farmers/total_items_sold.dart';
 import 'package:ngo/screens/search/searchPage.dart';
 import 'package:ngo/screens/wallet/wallet_page.dart';
 import '../../api/constant.dart';
@@ -177,16 +178,31 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)),
                             child: Center(
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width*0.35,
-                                child: Text(
-                                  "Total Items Sold",
-                                  style: GoogleFonts.nunito(
-                                    fontWeight: FontWeight.bold,
-                                      fontSize: 22
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                  SizedBox(
+                                  width: MediaQuery.of(context).size.width*0.35,
+                                  child: Text(
+                                    "Total Items Sold",
+                                    style: GoogleFonts.nunito(
+                                      fontWeight: FontWeight.bold,
+                                        fontSize: 22
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
                                 ),
+                                  Center(
+                                    child: SizedBox(
+                                      child: Text("= 10",
+                                        style: GoogleFonts.nunito(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]
                               ),
                             )),
                         onTap: () {},
@@ -209,19 +225,37 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)),
                             child: Center(
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width*0.35,
-                                  child: Text(
-                                    "Total Items Sold in Last Week",
-                                    style: GoogleFonts.nunito(
-                                      fontWeight: FontWeight.bold,
-                                        fontSize: 22
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                    width: MediaQuery.of(context).size.width*0.35,
+                                    child: Text(
+                                      "Total Items Sold in Last Week",
+                                      style: GoogleFonts.nunito(
+                                        fontWeight: FontWeight.bold,
+                                          fontSize: 22
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
-                                    textAlign: TextAlign.center,
                                   ),
+                                    Center(
+                                      child: SizedBox(
+                                        child: Text("= 10",
+                                          style: GoogleFonts.nunito(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 19
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ]
                                 ))),
                         onTap: () {
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => TotalItemsSold(userID: widget.userID,)),
+                          );
                         },
                       )),
                   Expanded(
@@ -234,16 +268,31 @@ class _FarmersScreen2State extends State<FarmersScreen2> {
                                 borderRadius: BorderRadius.circular(15.0),
                                 color: Colors.grey.withOpacity(0.15)),
                             child: Center(
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width*0.35,
-                                  child: Text(
-                                    "Wallet",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontWeight: FontWeight.bold,
-                                        fontSize: 22
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                    SizedBox(
+                                    width: MediaQuery.of(context).size.width*0.35,
+                                    child: Text(
+                                      "Wallet",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.nunito(
+                                        fontWeight: FontWeight.bold,
+                                          fontSize: 22
+                                      ),
                                     ),
                                   ),
+                                    Center(
+                                      child: SizedBox(
+                                        child: Text("Balance = Rs.100",
+                                          style: GoogleFonts.nunito(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 19
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                   ]
                                 ))),
                         onTap: (){
                           Navigator.push(context,

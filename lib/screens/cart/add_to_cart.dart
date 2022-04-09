@@ -39,7 +39,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          widget.appVal == true ? AppBar(backgroundColor: Colors.green) : null,
+          widget.appVal == true ? AppBar(backgroundColor: Colors.green,title: Text("Cart"),) : null,
       body: SingleChildScrollView(
         child: Column(
           children: [

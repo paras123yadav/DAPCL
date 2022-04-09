@@ -197,27 +197,27 @@ class _SignupState extends State<Signup> {
                   height: MediaQuery.of(context).size.height*0.025,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RaisedButton(
-                      color: Colors.grey.shade300,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context){
-                              return Login();
-                            }
-                            )
-                        );
-                      },
-                      child: Text("CANCEL",
-                          style: TextStyle(
-                              fontSize: 16,
-                              letterSpacing: 2.2,
-                              color: Colors.black)),
-                    ),
+                    // RaisedButton(
+                    //   color: Colors.grey.shade300,
+                    //   padding: EdgeInsets.symmetric(horizontal: 50),
+                    //   shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(20)),
+                    //   onPressed: () {
+                    //     Navigator.pushReplacement(context,
+                    //         MaterialPageRoute(builder: (context){
+                    //           return Login();
+                    //         }
+                    //         )
+                    //     );
+                    //   },
+                    //   child: Text("CANCEL",
+                    //       style: TextStyle(
+                    //           fontSize: 16,
+                    //           letterSpacing: 2.2,
+                    //           color: Colors.black)),
+                    // ),
                     RaisedButton(
                       onPressed: () async{
                         if (_formKey.currentState!.validate()){
@@ -233,7 +233,7 @@ class _SignupState extends State<Signup> {
                       child: Text(
                         "Sign Up",
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 20,
                             letterSpacing: 2.2,
                             color: Colors.white),
                       ),

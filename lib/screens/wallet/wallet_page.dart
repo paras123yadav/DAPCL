@@ -13,6 +13,7 @@ class _WalletScreenState extends State<WalletScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Wallet"),
         backgroundColor: Colors.green,
       ),
       body: Column(

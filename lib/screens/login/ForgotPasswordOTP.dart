@@ -168,24 +168,24 @@ class _PinCodeVerificationScreenPasswordState extends State<PinCodeVerificationS
               SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Didn't receive the code? ",
-                    style: TextStyle(color: Colors.black54, fontSize: 15),
-                  ),
-                  TextButton(
-                      onPressed: () => snackBar("OTP resent!!"),
-                      child: Text(
-                        "RESEND",
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ))
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text(
+              //       "Didn't receive the code? ",
+              //       style: TextStyle(color: Colors.black54, fontSize: 15),
+              //     ),
+              //     TextButton(
+              //         onPressed: () => snackBar("OTP resent!!"),
+              //         child: Text(
+              //           "RESEND",
+              //           style: TextStyle(
+              //               color: Colors.blue,
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 16),
+              //         ))
+              //   ],
+              // ),
               SizedBox(
                 height: 14,
               ),
