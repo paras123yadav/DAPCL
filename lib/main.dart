@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ngo/screens/cart/add_to_cart.dart';
 import 'package:ngo/screens/cart/empty_cart.dart';
@@ -23,6 +25,7 @@ void main() async {
   password = preferences.getString('user_password');
   userID = preferences.getString('user_ID');
   userType = preferences.getString('user_type');
+  HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
 }
 
@@ -211,4 +214,10 @@ class _BottomNavigationBarControllerState
     setState(() {});
   }
 }
-
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
