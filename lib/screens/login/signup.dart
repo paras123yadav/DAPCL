@@ -311,12 +311,13 @@ class _SignupState extends State<Signup> {
         Uri.parse(registeration)
             .replace(queryParameters: params)
     );
+
+    var json=jsonDecode(response.body);
     if(response.statusCode==200)
-    {var json=jsonDecode(response.body);
-    if(json["status"]=="2") {
+    {if(json["status"]=="2") {
 
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Registered Successfully!!")));
+          SnackBar(content: Text("${json["message"]}!!")));
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context){
             return Login();
@@ -329,12 +330,12 @@ class _SignupState extends State<Signup> {
     else
     {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("User Already Registered !!")));
+          SnackBar(content: Text("${json["message"]}!!")));
       return false;
     }
     }
     ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please Try After Some Time !!")));
+        SnackBar(content: Text("${json["message"]} !!")));
     return false;
   }
 }
