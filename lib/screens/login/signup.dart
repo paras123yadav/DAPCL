@@ -314,6 +314,9 @@ class _SignupState extends State<Signup> {
     if(response.statusCode==200)
     {var json=jsonDecode(response.body);
     if(json["status"]=="2") {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Registered Successfully!!")));
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context){
             return Login();
